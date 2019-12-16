@@ -2,7 +2,7 @@
   <% if @idea.photos.attached? %>
     <%= cl_image_tag @idea.photos.first.key %>
   <% else %>
-    <%= image_tag 'https://www.outokummunseutu.fi/components/com_easyblog/themes/wireframe/images/placeholder-image.png', alt: 'no-image-attached-to-idea' %>
+    <%= image_tag 'https://cdn1.iconfinder.com/data/icons/file-management-system-glyph/32/Filemanager-glyph-svg-83-512.png', alt: 'no-image-attached-to-idea' %>
   <% end %>
   <div class="card-product-infos">
     <h2><%= @idea.title %></h2>
@@ -13,8 +13,33 @@
   <% end %>
 </div>
 
-<% if !@idea.user == current_user %>
-  <div class="card-product">
-    <p>add comment</p>
+
+<% @idea.comments.each do |comment| %>
+  <div class="notification">
+    <% if comment.user.photo.attached? %>
+      <%= cl_image_tag comment.user.photo.key, class: 'avatar-large' %>
+    <% else %>
+      <%= image_tag 'https://www.outokummunseutu.fi/components/com_easyblog/themes/wireframe/images/placeholder-image.png', alt: 'no-image-attached-to-user', class: 'avatar-large' %>
+    <% end %>
+    <div class="notification-content">
+      <p><strong><%= comment.user.first_name %> <%= comment.user.last_name %></strong></p>
+      <p><%= comment.message %></p>
+      <% if comment.upvote %>
+        <p><small>This user likes your idea !</small></p>
+      <% end %>
+    </div>
+
+    <% if comment.user == current_user %>
+      <div class="notification-actions">
+        <a href="#">Edit <i class="fas fa-pencil-alt"></i></a>
+        <a href="#">Delete <i class="far fa-trash-alt"></i></a>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<% if !(@idea.user == current_user) %>
+  <div class="notification">
+    <%= link_to 'Add a comment', new_idea_comment_path(@idea) %>
   </div>
 <% end %>
