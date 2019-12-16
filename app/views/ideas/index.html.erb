@@ -1,6 +1,22 @@
 <h1>Ideas List</h1>
 
 <% @ideas.each do |idea| %>
-  <%= idea.title %>
-  <%= idea.description %>
+  <%= link_to idea_path(idea) do %>
+    <div class="card-product">
+      <% if idea.photos.attached? %>
+        <%= cl_image_tag idea.photos.first.key %>
+      <% else %>
+        <%= image_tag 'https://www.outokummunseutu.fi/components/com_easyblog/themes/wireframe/images/placeholder-image.png', alt: 'no-image-attached-to-idea' %>
+      <% end %>
+      <div class="card-product-infos">
+        <h2><%= idea.title %></h2>
+        <p><%= idea.description.truncate(150) %></p>
+      </div>
+    </div>
+  <% end %>
 <% end %>
+
+
+<%= link_to 'New Idea', new_idea_path %>
+
+
