@@ -3,11 +3,15 @@
   height: 120px;
   background: white;
   border-radius: 4px;
-  box-shadow: 0 0 4px rgba(0,0,0,0.2);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  display: -webkit-box;
   display: flex;
+  -webkit-box-align: center;
   align-items: center;
   margin-bottom: 1em;
+  -webkit-box-flex: 1;
   flex-grow: 1;
+  border: 1px solid #550a4650;
 }
 
 .link-to-idea {
@@ -21,24 +25,26 @@
 }
 
 .upvote-arrow {
-  font-size: 32px;
+  font-size: 2rem;
   margin-left: 1em;
   flex-basis: 5%;
+  color: #550a46;
 }
 
 .card-product img {
   height: 100%;
-  width: 120px;
+  max-width: 200px;
   object-fit: cover;
 }
 
 .card-product h2 {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: bold;
+  color: #550a46;
 }
 
 .card-product p {
-  font-size: 12px;
+  font-size: 0.8rem;
   line-height: 1.4;
   opacity: .7;
   margin-bottom: 0;

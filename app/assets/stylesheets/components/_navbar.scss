@@ -1,6 +1,20 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background: #550a46;
+
+  .navbar-brand span {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: bolder;
+  }
+
+  .navbar-brand {
+    color: #EEEEEE;
+    transition: color 0.3s;
+
+    &:hover {
+      color: #FFFFFF;
+    }
+  }
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -9,4 +23,13 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+}
+
+.nav-link {
+  color: #DDDDDD !important;
+  transition: color 0.3s;
+
+  &:hover {
+    color: #FFFFFF !important;
+  }
 }
