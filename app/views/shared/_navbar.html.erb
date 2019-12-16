@@ -14,9 +14,18 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <% if user_signed_in? %>
-          <li class="nav-item active">
+          <% if current_page?(ideas_path) %>
+            <li class="nav-item active">
+          <% else %>
+            <li class="nav-item">
+          <% end %>
             <%= link_to "Ideas", ideas_path, class: "nav-link" %>
           </li>
+          <% if !current_page?(user_path(current_user)) %>
+            <li class="nav-item">
+          <% else %>
+            <li class="nav-item active">
+          <% end %>
           <li class="nav-item">
             <%= link_to "My profile", user_path(current_user), class: "nav-link" %>
           </li>
