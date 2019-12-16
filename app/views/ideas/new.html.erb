@@ -1,6 +1,15 @@
-<%= simple_form_for @idea do |f| %>
-  <%= f.input :title %>
-  <%= f.input :description %>
-  <%= f.input :photos, as: :file, input_html: { multiple: true }, required: true %>
-  <%= f.submit 'submit your idea !', class: 'btn btn-secondary-outline' %>
-<% end %>
+<div class="new-idea-container my-3">
+    <h1 class='new-idea-container-container__title'>Your amazing idea</h1>
+    <div class="new-idea-form-container bg-white p-3">
+      <%= simple_form_for @idea do |f| %>
+        <%= f.input :title %>
+        <%= f.input :description %>
+        <%= f.input :photos, as: :file,
+                    required: true,
+                    input_html: { multiple: true, autocomplete: "your desired picture", class: 'd-none' },
+                    label_html: { class: 'btn-ideas-primary'},
+                    label: '📷 Add some pics' %>
+        <%= f.submit 'Submit your idea !', class: 'btn-ideas-primary' %>
+      <% end %>
+    </div>
+</div>

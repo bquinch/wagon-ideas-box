@@ -21,7 +21,7 @@
                 input_html: { multiple: false },
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "your desired picture" }%>
+                input_html: { autocomplete: "your desired picture", class: 'd-none' }, label_html: { class: 'btn-ideas-primary'}, label: '📷 Add Profile Pic' %>
     <%= f.input :email,
                 required: true,
                 autofocus: true,
@@ -36,7 +36,7 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up", class: 'btn btn-secondary-outline' %>
+    <%= f.button :submit, "Sign up", class: 'btn-ideas-primary' %>
   </div>
 <% end %>
 
