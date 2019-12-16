@@ -11,12 +11,13 @@
       <div class="card-product-infos">
         <h2><%= idea.title %></h2>
         <p><%= idea.description.truncate(300) %></p>
+        <p><em>by <%= idea.user.first_name %> <%= idea.user.last_name %></em></p>
       </div>
+      <p><%= pluralize(idea.comments.count { |c| c.upvote == true }, 'like') %></p>
     </div>
   <% end %>
 <% end %>
 
 
 <%= link_to 'New Idea', new_idea_path %>
-
 
