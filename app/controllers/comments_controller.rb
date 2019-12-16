@@ -17,6 +17,13 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment = Comment.find(params[:id])
+    @idea = @comment.idea
+    @comment.destroy
+    redirect_to idea_path(@idea), notice: 'comment deleted'
+  end
+
   private
 
   def comment_params
