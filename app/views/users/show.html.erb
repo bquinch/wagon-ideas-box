@@ -1,0 +1,7 @@
+<%# if @user.photo.attached? %>
+  <%#= image_tag @user.photo.key, alt: "#{@user.first_name}-#{@user.last_name}-pic" %>
+<%# end %>
+
+<h1>Bonjour <%= @user.first_name %></h1>
+
+<%= link_to 'update profile', edit_user_registration_path %>
