@@ -1,0 +1,9 @@
+<% if @user.photo.attached? %>
+  <%= cl_image_tag @user.photo.key, alt: "#{@user.first_name}-#{@user.last_name}-pic", class: 'avatar-large' %>
+<% else %>
+  <%= image_tag 'https://cdn1.iconfinder.com/data/icons/file-management-system-glyph/32/Filemanager-glyph-svg-83-512.png', alt: "empty-user-pic", class: 'avatar-large' %>
+<% end %>
+
+<h1>Bonjour <%= @user.first_name %></h1>
+
+<%= link_to 'update profile', edit_user_registration_path %>
