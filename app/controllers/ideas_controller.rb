@@ -2,10 +2,11 @@ class IdeasController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
   before_action :set_idea, only: %i[show edit destroy]
   def index
-    @ideas = Idea.all
+    @ideas = Idea.order(created_at: :desc)
   end
 
   def show
+    @comment = Comment.new
   end
 
   def new

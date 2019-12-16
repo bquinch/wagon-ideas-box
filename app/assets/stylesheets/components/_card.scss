@@ -2,21 +2,40 @@
   overflow: hidden;
   height: 120px;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 4px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
+  margin-bottom: 1em;
+  flex-grow: 1;
+}
+
+.link-to-idea {
+  width: 100%;
+}
+
+.card-and-upvote {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.upvote-arrow {
+  font-size: 32px;
+  margin-left: 1em;
+  flex-basis: 5%;
 }
 
 .card-product img {
   height: 100%;
   width: 120px;
   object-fit: cover;
+  flex-grow: 1;
 }
 
 .card-product h2 {
   font-size: 16px;
   font-weight: bold;
-  margin: 0;
 }
 
 .card-product p {
@@ -24,9 +43,20 @@
   line-height: 1.4;
   opacity: .7;
   margin-bottom: 0;
-  margin-top: 8px;
+  margin-right: 2em;
+}
+
+.card-product-infos-and-votes {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .card-product .card-product-infos {
   padding: 16px;
+}
+
+.votes {
+  text-align: right;
 }
