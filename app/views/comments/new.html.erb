@@ -1,0 +1,5 @@
+<%= simple_form_for [@idea, @comment] do |f| %>
+  <%= f.input :message %>
+  <%= f.input :upvote %>
+  <%= f.submit 'Comment now !', class: 'test' %>
+<% end %>
