@@ -1,6 +1,20 @@
-<h1><%= @idea.title %></h1>
-<p><%= @idea.description %></p>
+<div class="card-product">
+  <% if @idea.photos.attached? %>
+    <%= cl_image_tag @idea.photos.first.key %>
+  <% else %>
+    <%= image_tag 'https://www.outokummunseutu.fi/components/com_easyblog/themes/wireframe/images/placeholder-image.png', alt: 'no-image-attached-to-idea' %>
+  <% end %>
+  <div class="card-product-infos">
+    <h2><%= @idea.title %></h2>
+    <p><%= @idea.description.truncate(300) %></p>
+  </div>
+  <% if @idea.user == current_user %>
+    <%= link_to "Delete", idea_path(@idea), confirm: "Are you sure you want to delete this ?", method: :delete %>
+  <% end %>
+</div>
 
-<% if @idea.user == current_user %>
-  <%= link_to "Delete", idea_path(@idea), confirm: "Are you sure you want to delete this ?", method: :delete %>
+<% if !@idea.user == current_user %>
+  <div class="card-product">
+    <p>add comment</p>
+  </div>
 <% end %>
