@@ -7,6 +7,7 @@
   <div class="card-product-infos">
     <h2><%= @idea.title %></h2>
     <p><%= @idea.description.truncate(300) %></p>
+    <p><em>by <%= @idea.user.first_name %> <%= @idea.user.last_name %></em></p>
   </div>
   <% if @idea.user == current_user %>
     <%= link_to "Delete", idea_path(@idea), data: { confirm: 'Are you sure?' }, method: :delete %>
