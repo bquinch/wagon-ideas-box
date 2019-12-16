@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users, only: :show
   resources :ideas do
     resources :comments, only: %i[new create]
+    resources :upvotes, only: %i[create]
   end
 
   resources :comments, only: %i[destroy]

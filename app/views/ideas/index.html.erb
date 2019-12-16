@@ -1,21 +1,38 @@
 <h1>Ideas List</h1>
 
 <% @ideas.each do |idea| %>
-  <%= link_to idea_path(idea) do %>
+  <%= link_to idea_path(idea), class: "link-to-idea" do %>
+  <div class="card-and-upvote">
     <div class="card-product">
       <% if idea.photos.attached? %>
         <%= cl_image_tag idea.photos.first.key %>
       <% else %>
         <%= image_tag 'https://www.outokummunseutu.fi/components/com_easyblog/themes/wireframe/images/placeholder-image.png', alt: 'no-image-attached-to-idea' %>
       <% end %>
-      <div class="card-product-infos">
-        <h2><%= idea.title %></h2>
-        <p><%= idea.description.truncate(300) %></p>
-        <p><em>by <%= idea.user.first_name %> <%= idea.user.last_name %></em></p>
+      <div class="card-product-infos-and-votes">
+        <div class="card-product-infos">
+          <h2><%= idea.title %></h2>
+          <p><%= idea.description.truncate(300) %></p>
+          <p><%= idea.created_at.strftime("Published on %d/%m/%Y") %></p>
+          <p><em>by <%= idea.user.first_name.capitalize %> <%= idea.user.last_name.capitalize %></em></p>
+        </div>
+        <div class="votes">
+          <p><%= pluralize(Upvote.where(idea_id: idea.id, user: current_user).length, 'vote') %></p>
+          <% if Upvote.where(idea_id: idea.id, user: current_user).length > 0 %>
+            <p><em>You upvoted this idea</em></p>
+          <% end %>
+        </div>
       </div>
-      <p><%= pluralize(idea.comments.count { |c| c.upvote == true }, 'like') %></p>
     </div>
   <% end %>
+  <% if user_signed_in? %>
+    <% unless Upvote.where(idea_id: idea.id, user: current_user).length > 0 %>
+      <%= link_to idea_upvotes_path(idea), method: :post do  %>
+        <i class="fas fa-arrow-circle-up upvote-arrow"></i>
+      <% end %>
+    <% end %>
+  <% end %>
+  </div>
 <% end %>
 
 <%= link_to 'New Idea', new_idea_path %>

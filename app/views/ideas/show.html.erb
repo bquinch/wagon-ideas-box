@@ -1,47 +1,52 @@
-<div class="card-product">
-  <% if @idea.photos.attached? %>
-    <%= cl_image_tag @idea.photos.first.key %>
-  <% else %>
-    <%= image_tag 'https://cdn1.iconfinder.com/data/icons/file-management-system-glyph/32/Filemanager-glyph-svg-83-512.png', alt: 'no-image-attached-to-idea' %>
-  <% end %>
-  <div class="card-product-infos">
-    <h2><%= @idea.title %></h2>
-    <p><%= @idea.description.truncate(300) %></p>
-    <p><em>by <%= @idea.user.first_name %> <%= @idea.user.last_name %></em></p>
-  </div>
-  <% if @idea.user == current_user %>
-    <%= link_to "Delete", idea_path(@idea), data: { confirm: 'Are you sure?' }, method: :delete %>
-  <% end %>
-</div>
-
-
-<% @idea.comments.each do |comment| %>
-  <div class="notification">
-    <% if comment.user.photo.attached? %>
-      <%= cl_image_tag comment.user.photo.key, class: 'avatar-large' %>
+<div class="container-idea-comments">
+  <div class="card-product-show">
+    <% if @idea.photos.attached? %>
+      <%= cl_image_tag @idea.photos.first.key, class: "img-show" %>
     <% else %>
-      <%= image_tag 'https://www.outokummunseutu.fi/components/com_easyblog/themes/wireframe/images/placeholder-image.png', alt: 'no-image-attached-to-user', class: 'avatar-large' %>
+      <%= image_tag 'https://cdn1.iconfinder.com/data/icons/file-management-system-glyph/32/Filemanager-glyph-svg-83-512.png', alt: 'no-image-attached-to-idea' %>
     <% end %>
-    <div class="notification-content">
-      <p><strong><%= comment.user.first_name %> <%= comment.user.last_name %></strong></p>
-      <p><%= comment.message %></p>
-      <% if comment.upvote %>
-        <p><small>This user likes your idea !</small></p>
-      <% end %>
+    <div class="card-product-infos-show">
+      <h2><%= @idea.title %></h2>
+      <p><%= @idea.description.truncate(300) %></p>
+      <p><em>by <%= @idea.user.first_name.capitalize %> <%= @idea.user.last_name.capitalize %></em></p>
     </div>
+    <% if @idea.user == current_user %>
+      <%= link_to "Delete", idea_path(@idea), data: { confirm: 'Are you sure?' }, method: :delete %>
+    <% end %>
+  </div>
 
-    <% if comment.user == current_user %>
-      <div class="notification-actions">
-        <%= link_to comment_path(comment), data: { confirm: 'Are you sure?' }, method: :delete do %>
-          Delete <i class="far fa-trash-alt"></i>
+<div class="chatroom">
+  <div class="messages">
+    <% @idea.comments.each do |comment| %>
+      <div class="notification">
+        <% if comment.user.photo.attached? %>
+          <%= cl_image_tag comment.user.photo.key, class: 'avatar-large' %>
+        <% else %>
+          <%= image_tag 'https://www.outokummunseutu.fi/components/com_easyblog/themes/wireframe/images/placeholder-image.png', alt: 'no-image-attached-to-user', class: 'avatar-large' %>
+        <% end %>
+        <div class="notification-content">
+          <p><strong><%= comment.user.first_name %> <%= comment.user.last_name %></strong></p>
+          <p><%= comment.message %></p>
+        </div>
+
+        <% if comment.user == current_user %>
+          <div class="notification-actions">
+            <%= link_to comment_path(comment), data: { confirm: 'Are you sure?' }, method: :delete do %>
+              Delete <i class="far fa-trash-alt"></i>
+            <% end %>
+          </div>
         <% end %>
       </div>
     <% end %>
   </div>
-<% end %>
 
-<% if !(@idea.user == current_user) %>
-  <div class="notification">
-    <%= link_to 'Add a comment', new_idea_comment_path(@idea) %>
+  <div>
+    <%= simple_form_for [@idea, @comment] do |f| %>
+      <%= f.input :message %>
+      <%= f.submit 'Comment now !', class: 'test' %>
+    <% end %>
   </div>
-<% end %>
+
+</div>
+</div>
+
