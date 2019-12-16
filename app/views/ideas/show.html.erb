@@ -11,42 +11,42 @@
       <p><em>by <%= @idea.user.first_name.capitalize %> <%= @idea.user.last_name.capitalize %></em></p>
     </div>
     <% if @idea.user == current_user %>
-      <%= link_to "Delete", idea_path(@idea), data: { confirm: 'Are you sure?' }, method: :delete %>
+      <%= link_to "Delete", idea_path(@idea), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn-ideas-secondary' %>
     <% end %>
   </div>
 
-<div class="chatroom">
-  <div class="messages">
-    <% @idea.comments.each do |comment| %>
-      <div class="notification">
-        <% if comment.user.photo.attached? %>
-          <%= cl_image_tag comment.user.photo.key, class: 'avatar-large' %>
-        <% else %>
-          <%= image_tag 'https://www.outokummunseutu.fi/components/com_easyblog/themes/wireframe/images/placeholder-image.png', alt: 'no-image-attached-to-user', class: 'avatar-large' %>
-        <% end %>
-        <div class="notification-content">
-          <p><strong><%= comment.user.first_name %> <%= comment.user.last_name %></strong></p>
-          <p><%= comment.message %></p>
-        </div>
-
-        <% if comment.user == current_user %>
-          <div class="notification-actions">
-            <%= link_to comment_path(comment), data: { confirm: 'Are you sure?' }, method: :delete do %>
-              Delete <i class="far fa-trash-alt"></i>
-            <% end %>
+  <div class="chatroom">
+    <div class="messages">
+      <% @idea.comments.each do |comment| %>
+        <div class="notification">
+          <% if comment.user.photo.attached? %>
+            <%= cl_image_tag comment.user.photo.key, class: 'avatar-large' %>
+          <% else %>
+            <%= image_tag 'https://www.outokummunseutu.fi/components/com_easyblog/themes/wireframe/images/placeholder-image.png', alt: 'no-image-attached-to-user', class: 'avatar-large' %>
+          <% end %>
+          <div class="notification-content">
+            <p><strong><%= comment.user.first_name %> <%= comment.user.last_name %></strong></p>
+            <p><%= comment.message %></p>
           </div>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
 
-  <div>
-    <%= simple_form_for [@idea, @comment] do |f| %>
-      <%= f.input :message %>
-      <%= f.submit 'Comment now !', class: 'test' %>
-    <% end %>
-  </div>
+          <% if comment.user == current_user %>
+            <div class="notification-actions">
+              <%= link_to comment_path(comment), data: { confirm: 'Are you sure?' }, method: :delete do %>
+                Delete <i class="far fa-trash-alt"></i>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
 
-</div>
+    <div>
+      <%= simple_form_for [@idea, @comment] do |f| %>
+        <%= f.input :message %>
+        <%= f.submit 'Comment now !', class: 'btn-ideas-primary' %>
+      <% end %>
+    </div>
+
+  </div>
 </div>
 
