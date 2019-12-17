@@ -16,6 +16,9 @@
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "your desired field" }%>
+    <%= f.input :github_name,
+                autofocus: true,
+                input_html: { autocomplete: "your github name" }%>
     <%= f.input :photo,
                 as: :file,
                 input_html: { multiple: false },
