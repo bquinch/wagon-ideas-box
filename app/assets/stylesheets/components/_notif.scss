@@ -11,6 +11,10 @@
   padding: 0 24px;
 }
 
+.notification:first-child {
+  margin-top: auto;
+}
+
 .notification p {
   margin: 0;
   line-height: 1.4;
