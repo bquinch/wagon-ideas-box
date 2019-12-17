@@ -1,1 +1,8 @@
-<h1><%= link_to 'new-user', new_user_registration_path %></h1>
+<div class="idea-box-banner" style="background: linear-gradient(110deg, rgba(255,255,255,0.99), rgba(255,255,255,0.85)), url(<%= image_path 'bg-white-text.jpg' %>)">
+  <div class="idea-box-banner_text pb-3">
+    <h1 class="idea-box-banner__title">Welcome to the Idea Box</h1>
+    <p class="idea-box-banner__subtext">This is an <em>idea box</em> website created by <strong>Le Wagon</strong> members of batch <strong>#321</strong></p>
+  </div>
+  <%= link_to 'Find new ideas !', ideas_path, class: 'btn-ideas-primary' %>
+</div>
+
