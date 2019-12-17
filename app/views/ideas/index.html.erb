@@ -19,7 +19,7 @@
             <p><em>by <%= idea.user.first_name.capitalize %> <%= idea.user.last_name.capitalize %></em></p>
           </div>
           <div class="votes">
-            <p><%= pluralize(Upvote.where(idea_id: idea.id, user: current_user).length, 'vote') %></p>
+            <p><%= pluralize(idea.upvotes.length, 'vote') %></p>
             <% if Upvote.where(idea_id: idea.id, user: current_user).length > 0 %>
               <p><em>You upvoted this idea</em></p>
             <% end %>
