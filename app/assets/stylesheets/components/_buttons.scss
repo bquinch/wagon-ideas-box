@@ -16,5 +16,14 @@
 }
 
 .btn-ideas-secondary {
+  border-radius: 3px;
+  color: #550a4695;
+  font-size: 0.9rem;
+  font-style: italic;
+  -webkit-transition: all 0.3s;
+  transition: all 0.1s;
 
+  &:hover {
+    color: #550a46;
+  }
 }

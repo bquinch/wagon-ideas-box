@@ -1,0 +1,46 @@
+.profile-card {
+  background: white;
+  height: fit-content;
+  padding: 1rem;
+  padding-top: 0rem;
+  border-radius: 4px;
+  border: 1px solid #550A4660;
+}
+
+.profile-card__user-name {
+  border-bottom: 0.5px solid #550A46;
+}
+
+.profile-card__avatar {
+  border: 1px solid #550B4660;
+  position: relative;
+  top: -10px;
+}
+
+.profile-card__title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #550A46;
+}
+
+.profile-card__github-link {
+  padding: .5rem;
+
+  .fa-github {
+    color: #550A46;
+  }
+}
+
+.profile-ideas-list-container {
+  background: white;
+  margin-left: 1rem;
+  padding-top: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #550A4660;
+
+  h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #550A46;
+  }
+}

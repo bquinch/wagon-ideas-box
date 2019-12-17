@@ -1,32 +1,41 @@
-<div class="profile-card">
-  <div class="d-flex align-items-center m-3">
-    <% if @user.photo.attached? %>
-      <%= cl_image_tag @user.photo.key, class: 'avatar-large' %>
-    <% else %>
-      <%= image_tag 'https://cdn1.iconfinder.com/data/icons/file-management-system-glyph/32/Filemanager-glyph-svg-83-512.png', alt: "empty-user-pic", class: 'avatar-large' %>
-    <% end %>
+<div class="d-flex mt-3">
+  <div class="profile-card col-3">
+    <div class="profile-card__user-name d-flex align-items-center">
+      <% if @user.photo.attached? %>
+        <%= cl_image_tag @user.photo.key, class: 'avatar profile-card__avatar' %>
+      <% else %>
+        <%= image_tag 'https://cdn1.iconfinder.com/data/icons/file-management-system-glyph/32/Filemanager-glyph-svg-83-512.png', alt: "empty-user-pic", class: 'avatar profile-card__avatar' %>
+      <% end %>
+      <h3 class="pl-3 profile-card__title"><%= @user.first_name %> <%= @user.last_name %></h3>
+    </div>
+    <div class="profile-card__github-link">
+      <%= link_to "https://www.github.com/#{@user.github_name}", target: "_blank" do  %>
+        <i class="fab fa-github"></i>
+        <span class="pl-2"><%= @user.github_name %></span>
+      <% end %>
+    </div>
+    <%= link_to 'update profile', edit_user_registration_path, class: 'btn-ideas-secondary' %>
+  </div>
 
-    <h3 class="pl-3">Bonjour <%= @user.first_name %></h3>
+  <div class="profile-ideas-list-container col-9">
+    <% if !@user.ideas.empty? %>
+      <h3>You have <%= pluralize(@user.ideas.length, 'idea') %></h3>
+      <% @user.ideas.each do |idea| %>
+        <%= link_to idea_path(idea) do %>
+          <div class="card-product">
+            <% if idea.photos.attached? %>
+              <%= cl_image_tag idea.photos.first.key %>
+            <% else %>
+              <%= image_tag 'https://www.outokummunseutu.fi/components/com_easyblog/themes/wireframe/images/placeholder-image.png', alt: 'no-image-attached-to-idea' %>
+            <% end %>
+            <div class="card-product-infos">
+              <h2><%= idea.title %></h2>
+              <p><%= idea.description.truncate(300) %></p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
   </div>
 </div>
 
-<% if !@user.ideas.empty? %>
-  <h3>You have <%= pluralize(@user.ideas.length, 'idea') %></h3>
-  <% @user.ideas.each do |idea| %>
-    <%= link_to idea_path(idea) do %>
-      <div class="card-product">
-        <% if idea.photos.attached? %>
-          <%= cl_image_tag idea.photos.first.key %>
-        <% else %>
-          <%= image_tag 'https://www.outokummunseutu.fi/components/com_easyblog/themes/wireframe/images/placeholder-image.png', alt: 'no-image-attached-to-idea' %>
-        <% end %>
-        <div class="card-product-infos">
-          <h2><%= idea.title %></h2>
-          <p><%= idea.description.truncate(300) %></p>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
-<% end %>
-
-<%= link_to 'update profile', edit_user_registration_path, class: 'btn-ideas-primary' %>
