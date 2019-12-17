@@ -1,21 +1,47 @@
+<div class="selectors">
+  <div id="idea-selector" class="selector active">Idea</div>
+  <div id="chat-selector" class="selector">Chat</div>
+</div>
+
+ <% if @idea.photos.attached? %>
 <div class="container-idea-comments">
-  <div class="card-product-show">
-    <% if @idea.photos.attached? %>
-      <%= cl_image_tag @idea.photos.first.key, class: "img-show" %>
+  <div class="card-product-show" id="idea-container">
+
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <%= cl_image_tag @idea.photos.first.key, class: "d-block w-100 image-caroussel" %>
+    </div>
+    <% @idea.photos[1..-1].each do |photo| %>
+    <div class="carousel-item">
+      <%= cl_image_tag photo.key, class: "d-block w-100 image-caroussel" %>
+    </div>
+    <% end %>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
     <% else %>
       <%= image_tag 'https://cdn1.iconfinder.com/data/icons/file-management-system-glyph/32/Filemanager-glyph-svg-83-512.png', alt: 'no-image-attached-to-idea' %>
     <% end %>
+
     <div class="card-product-infos-show">
-      <h2><%= @idea.title %></h2>
-      <p><%= @idea.description.truncate(300) %></p>
-      <p><em>by <%= @idea.user.first_name.capitalize %> <%= @idea.user.last_name.capitalize %></em></p>
+      <h2><%= @idea.title %> <em>by <%= @idea.user.first_name.capitalize %> <%= @idea.user.last_name.capitalize %></em></h2>
+      <p><%= @idea.description %></p>
     </div>
     <% if @idea.user == current_user %>
       <%= link_to "Delete", idea_path(@idea), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn-ideas-secondary' %>
     <% end %>
   </div>
 
-  <div class="chatroom">
+  <div class="chatroom hidden" id="chat-container">
     <div class="messages">
       <% @idea.comments.each do |comment| %>
         <div class="notification">

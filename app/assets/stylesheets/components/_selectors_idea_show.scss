@@ -1,0 +1,26 @@
+.selectors {
+  display: flex;
+  width: 100%;
+  height: 5vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.selector {
+  padding: 0.5em 2em;
+  color: rgba(0,0,0,0.3);
+  border-bottom: solid 1px rgba(0,0,0,0.3);
+}
+
+.selector:first-child {
+  margin-right: 5em;
+}
+
+.selector.active {
+  border-bottom: solid 3px rgba(0,0,0,0.6);
+  color: rgba(0,0,0,0.6);
+}
+
+.hidden {
+  display: none;
+}
