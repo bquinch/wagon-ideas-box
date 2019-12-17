@@ -1,11 +1,13 @@
-<div class="d-flex align-items-center m-3">
-  <% if @user.photo.attached? %>
-    <%= cl_image_tag @user.photo.key, class: 'avatar-large' %>
-  <% else %>
-    <%= image_tag 'https://cdn1.iconfinder.com/data/icons/file-management-system-glyph/32/Filemanager-glyph-svg-83-512.png', alt: "empty-user-pic", class: 'avatar-large' %>
-  <% end %>
+<div class="profile-card">
+  <div class="d-flex align-items-center m-3">
+    <% if @user.photo.attached? %>
+      <%= cl_image_tag @user.photo.key, class: 'avatar-large' %>
+    <% else %>
+      <%= image_tag 'https://cdn1.iconfinder.com/data/icons/file-management-system-glyph/32/Filemanager-glyph-svg-83-512.png', alt: "empty-user-pic", class: 'avatar-large' %>
+    <% end %>
 
-  <h3 class="pl-3">Bonjour <%= @user.first_name %></h3>
+    <h3 class="pl-3">Bonjour <%= @user.first_name %></h3>
+  </div>
 </div>
 
 <% if !@user.ideas.empty? %>
