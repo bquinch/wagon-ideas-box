@@ -1,9 +1,29 @@
 .container-idea-comments {
-  display: flex;
-  align-items: flex-start;
   margin-top: 1em;
-  height: 85vh;
+  height: 80vh;
+  position: relative;
 }
+
+.title-and-upvote {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title-and-upvote p {
+  margin: 0 3em;
+}
+
+.votes-in-show {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.votes-in-show p {
+  margin: 1em;
+}
+
 
 .card-product-show {
   overflow: hidden;
@@ -28,19 +48,21 @@
 
 .chatroom {
   width: 100%;
+  height: 80%;
   margin-left: 1em;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
+  overflow: scroll;
 }
 
 .messages {
-  height: 100%;
   background-color: white;
-  display: flex;
-  flex-direction: column;
-  overflow: auto;
+  width: 100%;
+}
+
+.comment-zone {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 20%;
 }
 
 .image-caroussel {

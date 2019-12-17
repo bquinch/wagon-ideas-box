@@ -1,0 +1,7 @@
+function majVotes(votesHTML) {
+  const votes = document.getElementById('votes-in-show');
+  votes.innerHTML = votesHTML;
+}
+
+majVotes('<%= j render "upvotes/votes", idea: @idea %>');
+

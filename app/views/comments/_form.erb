@@ -1,0 +1,4 @@
+<%= simple_form_for([idea, comment], remote: true) do |f| %>
+  <%= f.input :message %>
+  <%= f.submit 'Comment now !', class: 'btn-ideas-primary' %>
+<% end %>

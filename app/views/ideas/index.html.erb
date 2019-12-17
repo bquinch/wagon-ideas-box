@@ -27,13 +27,6 @@
         </div>
       </div>
     <% end %>
-    <% if user_signed_in? %>
-      <% unless Upvote.where(idea_id: idea.id, user: current_user).length > 0 %>
-        <%= link_to idea_upvotes_path(idea), method: :post do  %>
-          <i class="fas fa-arrow-circle-up upvote-arrow"></i>
-        <% end %>
-      <% end %>
-    <% end %>
     </div>
   <% end %>
 </div>

@@ -3,76 +3,90 @@
   <div id="chat-selector" class="selector">Chat</div>
 </div>
 
- <% if @idea.photos.attached? %>
 <div class="container-idea-comments">
   <div class="card-product-show" id="idea-container">
-
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <%= cl_image_tag @idea.photos.first.key, class: "d-block w-100 image-caroussel" %>
-    </div>
-    <% @idea.photos[1..-1].each do |photo| %>
-    <div class="carousel-item">
-      <%= cl_image_tag photo.key, class: "d-block w-100 image-caroussel" %>
-    </div>
-    <% end %>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-
+    <% if @idea.photos.attached? %>
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <%= cl_image_tag @idea.photos.first.key, class: "d-block w-100 image-caroussel" %>
+          </div>
+          <% @idea.photos[1..-1].each do |photo| %>
+            <div class="carousel-item">
+              <%= cl_image_tag photo.key, class: "d-block w-100 image-caroussel" %>
+            </div>
+          <% end %>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
     <% else %>
-      <%= image_tag 'https://cdn1.iconfinder.com/data/icons/file-management-system-glyph/32/Filemanager-glyph-svg-83-512.png', alt: 'no-image-attached-to-idea' %>
+        <%= image_tag 'https://cdn1.iconfinder.com/data/icons/file-management-system-glyph/32/Filemanager-glyph-svg-83-512.png', alt: 'no-image-attached-to-idea' %>
     <% end %>
-
     <div class="card-product-infos-show">
+      <div class="title-and-upvote">
       <h2><%= @idea.title %> <em>by <%= @idea.user.first_name.capitalize %> <%= @idea.user.last_name.capitalize %></em></h2>
+      <div class="votes-in-show" id="votes-in-show">
+        <p><%= pluralize(@idea.upvotes.length, 'vote') %></p>
+        <% if user_signed_in? %>
+          <% if Upvote.where(idea_id: @idea.id, user: current_user).length > 0 %>
+            <p><em>(You upvoted this idea)</em></p>
+          <% else %>
+            <%= link_to idea_upvotes_path(@idea), remote: true, method: :post do  %>
+              <i class="fas fa-arrow-circle-up upvote-arrow"></i>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+      </div>
       <p><%= @idea.description %></p>
     </div>
     <% if @idea.user == current_user %>
       <%= link_to "Delete", idea_path(@idea), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn-ideas-secondary' %>
     <% end %>
   </div>
-
   <div class="chatroom hidden" id="chat-container">
-    <div class="messages">
-      <% @idea.comments.each do |comment| %>
-        <div class="notification">
-          <% if comment.user.photo.attached? %>
-            <%= cl_image_tag comment.user.photo.key, class: 'avatar-large' %>
-          <% else %>
-            <%= image_tag 'https://www.outokummunseutu.fi/components/com_easyblog/themes/wireframe/images/placeholder-image.png', alt: 'no-image-attached-to-user', class: 'avatar-large' %>
-          <% end %>
-          <div class="notification-content">
-            <p><strong><%= comment.user.first_name %> <%= comment.user.last_name %></strong></p>
-            <p><%= comment.message %></p>
-          </div>
 
-          <% if comment.user == current_user %>
-            <div class="notification-actions">
-              <%= link_to comment_path(comment), data: { confirm: 'Are you sure?' }, method: :delete do %>
-                Delete <i class="far fa-trash-alt"></i>
-              <% end %>
+      <div class="messages" id="messages-list">
+        <% @idea.comments.each do |comment| %>
+          <div class="notification">
+            <% if comment.user.photo.attached? %>
+              <%= cl_image_tag comment.user.photo.key, class: 'avatar-large' %>
+            <% else %>
+              <%= image_tag 'https://www.outokummunseutu.fi/components/com_easyblog/themes/wireframe/images/placeholder-image.png', alt: 'no-image-attached-to-user', class: 'avatar-large' %>
+            <% end %>
+            <div class="notification-content">
+              <p><strong><%= comment.user.first_name %> <%= comment.user.last_name %></strong></p>
+              <p><%= comment.message %></p>
             </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
 
-    <div>
-      <%= simple_form_for [@idea, @comment] do |f| %>
+            <% if comment.user == current_user %>
+              <div class="notification-actions">
+                <%= link_to comment_path(comment), data: { confirm: 'Are you sure?' }, method: :delete do %>
+                  Delete <i class="far fa-trash-alt"></i>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <div class="comment-zone">
+      <%= simple_form_for([@idea, @comment], remote: true) do |f| %>
         <%= f.input :message %>
         <%= f.submit 'Comment now !', class: 'btn-ideas-primary' %>
       <% end %>
     </div>
+    </div>
 
-  </div>
+
 </div>
+
+
+
 
