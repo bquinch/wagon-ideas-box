@@ -1,0 +1,14 @@
+.tag-list {
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 5px 10px;
+  margin-right: 4px;
+  border-radius: 3px;
+  color: #EEEEEE;
+  background: #617be3;
+  font-size: 0.8rem;
+
+  box-shadow: 0px 4px 16px rgba(0,0,0,0.1);
+}

@@ -31,21 +31,28 @@
     <% end %>
     <div class="card-product-infos-show">
       <div class="title-and-upvote">
-      <h2><%= @idea.title %> <em>by <%= @idea.user.first_name.capitalize %> <%= @idea.user.last_name.capitalize %></em></h2>
-      <div class="votes-in-show" id="votes-in-show">
-        <p><%= pluralize(@idea.upvotes.length, 'vote') %></p>
-        <% if user_signed_in? %>
-          <% if Upvote.where(idea_id: @idea.id, user: current_user).length > 0 %>
-            <p><em>(You upvoted this idea)</em></p>
-          <% else %>
-            <%= link_to idea_upvotes_path(@idea), remote: true, method: :post do  %>
-              <i class="fas fa-arrow-circle-up upvote-arrow"></i>
+        <h2><%= @idea.title %> <em>by <%= @idea.user.first_name.capitalize %> <%= @idea.user.last_name.capitalize %></em></h2>
+        <div class="votes-in-show" id="votes-in-show">
+          <p><%= pluralize(@idea.upvotes.length, 'vote') %></p>
+          <% if user_signed_in? %>
+            <% if Upvote.where(idea_id: @idea.id, user: current_user).length > 0 %>
+              <p><em>(You upvoted this idea)</em></p>
+            <% else %>
+              <%= link_to idea_upvotes_path(@idea), remote: true, method: :post do  %>
+                <i class="fas fa-arrow-circle-up upvote-arrow"></i>
+              <% end %>
             <% end %>
           <% end %>
-        <% end %>
-      </div>
+        </div>
       </div>
       <p><%= @idea.description %></p>
+      <div class="tag-list d-flex">
+        <% @idea.tags.each do |tag| %>
+          <div class="tag tag-number<%= rand(1..3) %>">
+            <%= tag.name %>
+          </div>
+        <% end %>
+      </div>
     </div>
     <% if @idea.user == current_user %>
       <%= link_to "Delete", idea_path(@idea), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn-ideas-secondary' %>

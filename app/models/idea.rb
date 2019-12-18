@@ -5,4 +5,5 @@ class Idea < ApplicationRecord
   has_many_attached :photos
   has_many :comments, dependent: :destroy
   has_many :upvotes, dependent: :destroy
+  acts_as_taggable
 end

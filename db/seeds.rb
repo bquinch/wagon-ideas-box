@@ -10,6 +10,8 @@ require 'json'
 
 
 FIELDS = ["FullStack Developper", "Back-end Developper", "Front-end Developper", "UX Designer", "Product Manager"]
+TAGS = %w[original sympa créatif utilitaire éducation networking travail design culture sorties alcool technologie amour productivité sport]
+
 
 def new_users
   password = '123456'
@@ -175,7 +177,7 @@ def add_upvote_to_idea(user)
   end
 end
 
-if User.all.length >= 5
+if User.all.length >= 5 && Idea.all.length < 5
   Idea.destroy_all
   User.all.each { |u| rand(1..4).times { create_idea(u) } }
   User.all.each { |u| add_upvote_to_idea(u) }
@@ -186,6 +188,13 @@ if Idea.all.length >= 5
   Idea.all.each { |i| rand(3..10).times { create_comment(i) }}
 end
 
+Idea.all.each do |idea|
+  rand(2..5).times do
+    tag = TAGS.sample
+    idea.tag_list.add(tag) if idea.tags.all? { |i| i != tag }
+    idea.save
+  end
+end
 
 # if Idea.all.length >= 5
 #   Upvote.destroy_all
