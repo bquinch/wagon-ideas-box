@@ -28,7 +28,27 @@
         <% @idea = idea %>
         <%= render 'shared/idea-card' %>
       <% end %>
-    <% end %>
+    </div>
+    <div class="profile-ideas-list-container col-9 mt-5">
+      <% if !@user.upvotes.empty? %>
+        <h3>You upvoted <%= pluralize(@user.upvotes.length, 'idea') %></h3>
+        <% @user.upvotes.each do |upvote| %>
+          <%= link_to idea_path(upvote.idea) do %>
+            <div class="card-product">
+              <% if upvote.idea.photos.attached? %>
+                <%= cl_image_tag upvote.idea.photos.first.key %>
+              <% else %>
+                <%= image_tag 'https://www.outokummunseutu.fi/components/com_easyblog/themes/wireframe/images/placeholder-image.png', alt: 'no-image-attached-to-idea' %>
+              <% end %>
+              <div class="card-product-infos">
+                <h2><%= upvote.idea.title %></h2>
+                <p><%= upvote.idea.description.truncate(300) %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
 
