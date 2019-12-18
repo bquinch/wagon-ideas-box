@@ -8,10 +8,14 @@
       <% end %>
       <h3 class="pl-3 profile-card__title"><%= @user.first_name %> <%= @user.last_name %></h3>
     </div>
-    <div class="profile-card__github-link">
-      <%= link_to "https://www.github.com/#{@user.github_name}", target: "_blank" do  %>
-        <i class="fab fa-github"></i>
-        <span class="pl-2"><%= @user.github_name %></span>
+    <div class="profile-card__list">
+      <i class="fas fa-laptop-code icone-profil"></i>
+      <span class="pl-1 profile-card__list__text"><%= @user.field %></span>
+    </div>
+    <div class="profile-card__list">
+      <%= link_to "https://www.github.com/#{@user.github_name}", target: "_blank", class: 'github-link' do  %>
+        <i class="fab fa-github icone-profil"></i>
+        <span class="pl-2 profile-card__list__text"><%= @user.github_name %></span>
       <% end %>
     </div>
     <%= link_to 'update profile', edit_user_registration_path, class: 'btn-ideas-secondary' %>
@@ -21,19 +25,8 @@
     <% if !@user.ideas.empty? %>
       <h3>You have <%= pluralize(@user.ideas.length, 'idea') %></h3>
       <% @user.ideas.each do |idea| %>
-        <%= link_to idea_path(idea) do %>
-          <div class="card-product">
-            <% if idea.photos.attached? %>
-              <%= cl_image_tag idea.photos.first.key %>
-            <% else %>
-              <%= image_tag 'https://www.outokummunseutu.fi/components/com_easyblog/themes/wireframe/images/placeholder-image.png', alt: 'no-image-attached-to-idea' %>
-            <% end %>
-            <div class="card-product-infos">
-              <h2><%= idea.title %></h2>
-              <p><%= idea.description.truncate(300) %></p>
-            </div>
-          </div>
-        <% end %>
+        <% @idea = idea %>
+        <%= render 'shared/idea-card' %>
       <% end %>
     <% end %>
   </div>

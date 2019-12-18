@@ -23,10 +23,10 @@
   color: #550A46;
 }
 
-.profile-card__github-link {
+.profile-card__list {
   padding: .5rem;
 
-  .fa-github {
+  .icone-profil {
     color: #550A46;
   }
 }
@@ -42,5 +42,16 @@
     font-size: 1.2rem;
     font-weight: bold;
     color: #550A46;
+  }
+}
+
+.profile-card__list__text {
+  color: #555555;
+  transition: 0.2s;
+}
+
+.github-link {
+  .profile-card__list__text:hover {
+    color: #333333;
   }
 }
