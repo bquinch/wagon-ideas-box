@@ -1,0 +1,15 @@
+function deleteMessage(innerHTML) {
+  const chatroom = document.getElementById('messages-list');
+  chatroom.innerHTML = innerHTML;
+  const notif = document.querySelectorAll('.notification')[document.querySelectorAll('.notification').length-1];
+  notif.scrollIntoView();
+}
+
+function refreshForm(innerHTML) {
+  const newCommentForm = document.getElementById('new_comment');
+  newCommentForm.innerHTML = innerHTML;
+}
+
+
+deleteMessage('<%= j render "comments/messages", idea: @idea %>');
+refreshForm('<%= j render "comments/form", idea: @idea, comment: Comment.new %>');

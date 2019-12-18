@@ -23,13 +23,19 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @idea = @comment.idea
-    @comment.destroy
-    redirect_to idea_path(@idea), notice: 'comment deleted'
+    if @comment.destroy
+      respond_to do |format|
+        format.html { redirect_to idea_path(@idea), notice: 'comment deleted' }
+        format.js
+      end
+    else
+      render "ideas/#{idea.id}"
+    end
   end
 
   private
 
   def comment_params
-    params.require(:comment).permit(:message, :upvote)
+    params.require(:comment).permit(:message)
   end
 end
