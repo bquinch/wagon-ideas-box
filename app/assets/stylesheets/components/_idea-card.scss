@@ -1,0 +1,68 @@
+.index-idea-card {
+  flex-basis: 340px;
+  background: white;
+  position: relative;
+  height: fit-content;
+  border-radius: 10px;
+  box-shadow: 0px 4px 16px (0,0,0,0.2);
+  border: 1px solid #666666;
+}
+
+.index-idea-card__user-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 10px;
+  position: absolute;
+  top: -20px;
+  left: 5%;
+}
+
+.index-idea-card__top__photo {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.index-idea-card__bottom__infos {
+  position: relative;
+}
+
+.index-idea-card__bottom__title {
+  font-size: 1.2rem;
+  font-weight: bolder;
+  color: #EEEEEE;
+  padding: 5px 10px;
+  background: #550a46;
+  position: absolute;
+  top: -40px;
+  border-radius: 10px 0px 10px 0px;
+}
+
+.index-idea-card__voted,
+.index-idea-card__unvoted {
+  position: absolute;
+  font-weight: bolder;
+  color: #EEEEEE;
+  top: 0px;
+  right: 0px;
+  padding: 5px 10px;
+  border-radius: 0px 10px 0px 10px;
+}
+
+.index-idea-card__voted {
+  background: #617be3;
+}
+
+.index-idea-card__unvoted {
+  background: #FFFFFF;
+  border-bottom: 1px solid #617be3;
+  border-left: 1px solid #617be3;
+  color: #617be3;
+}
+
+.index-idea-card__bottom__description {
+  color: #666666;
+  font-size: 0.9rem;
+}

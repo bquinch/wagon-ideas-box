@@ -6,4 +6,8 @@ class PagesController < ApplicationController
       redirect_to ideas_path
     end
   end
+
+  def components
+    @idea = Idea.all.sample
+  end
 end
