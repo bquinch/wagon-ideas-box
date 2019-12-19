@@ -1,6 +1,7 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: #550a46;
+  align-items: center;
 
   .navbar-brand span {
     font-family: 'Open Sans Condensed', sans-serif;
@@ -27,9 +28,28 @@
 
 .nav-link {
   color: #DDDDDD !important;
-  transition: color 0.3s;
+  transition: all 0.1s;
+  padding: 1rem 0rem;
 
   &:hover {
     color: #FFFFFF !important;
+    border-bottom: 2px solid #DDDDDD;
+  }
+}
+
+.navbar {
+  padding: 0px;
+  height: 59px;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-item.active {
+  .nav-link {
+    color: #FFFFFF !important;
+    border-bottom: 2px solid #DDDDDD;
   }
 }
