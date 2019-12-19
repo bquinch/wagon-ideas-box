@@ -1,10 +1,14 @@
+
 <div class="new-idea-container my-3">
     <h1 class='new-idea-container-container__title'>Your amazing idea</h1>
     <div class="new-idea-form-container bg-white p-3">
       <%= simple_form_for @idea do |f| %>
         <%= f.input :title, placeholder: 'A billion dollars idea !' %>
         <%= f.input :description, placeholder: 'I want to make people very rich !!!' %>
-        <%= f.input :tag_list, placeholder: 'Seperate tags with ,' %>
+        <%= f.input :tag_list, placeholder: 'Seperate tags with ,' ,
+                     input_html: { class: 'tagsSelection', multiple: "multiple" },
+                     collection: @tags
+                     %>
         <%= f.input :photos, as: :file,
                     required: true,
                     input_html: { multiple: true, autocomplete: "your desired picture", class: 'd-none' },
