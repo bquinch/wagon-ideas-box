@@ -2,10 +2,12 @@
 
   <h1 class='ideas-index-container__title'>Ideas List</h1>
 
-  <% @ideas.each do |idea| %>
-    <% @idea = idea %>
-    <%= render 'shared/idea-card' %>
-  <% end %>
+  <div class="idea-list__grid">
+    <% @ideas.each do |idea| %>
+      <% @idea = idea %>
+      <%= render 'shared/idea-card__preview' %>
+    <% end %>
+  </div>
 </div>
 <div id="new-idea" class="new-idea-card">
   <%= link_to 'New Idea', new_idea_path, class: 'btn-ideas-primary' %>

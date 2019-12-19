@@ -3,3 +3,9 @@
   font-weight: bolder;
   color: #550a46;
 }
+
+.idea-list__grid {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

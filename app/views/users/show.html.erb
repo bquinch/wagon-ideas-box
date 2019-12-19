@@ -28,6 +28,8 @@
         <% @idea = idea %>
         <%= render 'shared/idea-card' %>
       <% end %>
+    <% else %>
+      <h3>You have <%= pluralize(@user.ideas.length, 'idea') %></h3>
     <% end %>
   </div>
 </div>
