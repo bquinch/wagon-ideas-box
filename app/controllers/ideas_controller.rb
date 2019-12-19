@@ -11,6 +11,7 @@ class IdeasController < ApplicationController
 
   def new
     @idea = Idea.new
+    @tags = ActsAsTaggableOn::Tag.all.order('name').map{ |tag| tag.name }
   end
 
   def edit
@@ -35,7 +36,7 @@ class IdeasController < ApplicationController
   private
 
   def idea_params
-    params.require('idea').permit(:title, :description, :tag_list, photos: [])
+    params.require('idea').permit(:title, :description, tag_list: [], photos: [])
   end
 
   def set_idea
