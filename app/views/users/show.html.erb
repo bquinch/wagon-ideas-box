@@ -1,36 +1,36 @@
-<div class="d-flex mt-3">
-  <div class="profile-card col-3">
-    <div class="profile-card__user-name d-flex align-items-center">
-      <% if @user.photo.attached? %>
-        <%= cl_image_tag @user.photo.key, class: 'avatar profile-card__avatar' %>
-      <% else %>
-        <%= image_tag 'https://cdn1.iconfinder.com/data/icons/file-management-system-glyph/32/Filemanager-glyph-svg-83-512.png', alt: "empty-user-pic", class: 'avatar profile-card__avatar' %>
-      <% end %>
-      <h3 class="pl-3 profile-card__title"><%= @user.first_name %> <%= @user.last_name %></h3>
-    </div>
-    <div class="profile-card__list">
-      <i class="fas fa-laptop-code icone-profil"></i>
-      <span class="pl-1 profile-card__list__text"><%= @user.field %></span>
-    </div>
-    <div class="profile-card__list">
-      <%= link_to "https://www.github.com/#{@user.github_name}", target: "_blank", class: 'github-link' do  %>
-        <i class="fab fa-github icone-profil"></i>
-        <span class="pl-2 profile-card__list__text"><%= @user.github_name %></span>
-      <% end %>
-    </div>
-    <%= link_to 'update profile', edit_user_registration_path, class: 'btn-ideas-secondary' %>
+<div class="profile-card my-3">
+  <div class="profile-card__user-name d-flex align-items-center">
+    <% if @user.photo.attached? %>
+      <%= cl_image_tag @user.photo.key, class: 'avatar-large profile-card__avatar' %>
+    <% else %>
+      <%= image_tag 'https://cdn1.iconfinder.com/data/icons/file-management-system-glyph/32/Filemanager-glyph-svg-83-512.png', alt: "empty-user-pic", class: 'avatar-large profile-card__avatar' %>
+    <% end %>
+    <h3 class="pl-3 profile-card__title"><%= @user.first_name %> <%= @user.last_name %></h3>
   </div>
+  <div class="profile-card__list">
+    <i class="fas fa-laptop-code icone-profil"></i>
+    <span class="pl-1 profile-card__list__text"><%= @user.field %></span>
+  </div>
+  <div class="profile-card__list">
+    <%= link_to "https://www.github.com/#{@user.github_name}", target: "_blank", class: 'github-link' do  %>
+      <i class="fab fa-github icone-profil"></i>
+      <span class="pl-2 profile-card__list__text"><%= @user.github_name %></span>
+    <% end %>
+  </div>
+  <%= link_to 'update profile', edit_user_registration_path, class: 'btn-ideas-secondary' %>
+</div>
 
-  <div class="idea-list__grid col-9">
-    <% if !@user.ideas.empty? %>
-      <h3>You have <%= pluralize(@user.ideas.length, 'idea') %></h3>
+<div class="profile-ideas-list-container p-3">
+  <% if !@user.ideas.empty? %>
+    <h3 >You have <%= pluralize(@user.ideas.length, 'idea') %></h3>
+    <div class="idea-list__grid profile-idea-list">
       <% @user.ideas.each do |idea| %>
         <% @idea = idea %>
         <%= render 'shared/idea-card__preview' %>
       <% end %>
-    <% else %>
-      <h3>You have <%= pluralize(@user.ideas.length, 'idea') %></h3>
-    <% end %>
-  </div>
+    </div>
+  <% else %>
+    <h3>You have <%= pluralize(@user.ideas.length, 'idea') %></h3>
+  <% end %>
 </div>
 

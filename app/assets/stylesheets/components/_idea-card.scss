@@ -1,5 +1,5 @@
 .index-idea-card {
-  flex-basis: 340px;
+  width: 340px;
   background: white;
   position: relative;
   height: fit-content;
@@ -45,10 +45,10 @@
   position: absolute;
   font-weight: bolder;
   color: #EEEEEE;
-  top: 0px;
+  bottom: 0px;
   right: 0px;
   padding: 5px 10px;
-  border-radius: 0px 10px 0px 10px;
+  border-radius: 10px 0px 10px 0px;
 }
 
 .index-idea-card__voted {
@@ -57,7 +57,7 @@
 
 .index-idea-card__unvoted {
   background: #FFFFFF;
-  border-bottom: 1px solid #617be3;
+  border-top: 1px solid #617be3;
   border-left: 1px solid #617be3;
   color: #617be3;
 }

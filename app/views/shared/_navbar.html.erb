@@ -14,6 +14,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <% if user_signed_in? %>
+          <% if current_page?(new_idea_path) %>
+            <li class="nav-item active">
+          <% else %>
+            <li class="nav-item">
+          <% end %>
+            <%= link_to "New Idea ✚", new_idea_path, class: "nav-link" %>
+          </li>
           <% if current_page?(ideas_path) %>
             <li class="nav-item active">
           <% else %>
@@ -36,6 +43,13 @@
             </div>
           </li>
         <% else %>
+          <% if current_page?(new_idea_path) %>
+            <li class="nav-item active">
+          <% else %>
+            <li class="nav-item">
+          <% end %>
+            <%= link_to "New Idea ✚", new_idea_path, class: "nav-link" %>
+          </li>
           <% if current_page?(ideas_path) %>
             <li class="nav-item active">
           <% else %>
