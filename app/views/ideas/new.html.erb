@@ -3,8 +3,8 @@
     <h1 class='new-idea-container-container__title'>Your amazing idea</h1>
     <div class="new-idea-form-container bg-white p-3">
       <%= simple_form_for @idea do |f| %>
-        <%= f.input :title, placeholder: 'A billion dollars idea !' %>
-        <%= f.input :description, placeholder: 'I want to make people very rich !!!' %>
+        <%= f.input :title, placeholder: 'A billion dollars idea !', input_html: { maxlength: 45 } %>
+        <%= f.input :description, placeholder: 'I want to make people very rich !!!', input_html: { maxlength: 500 } %>
         <%= f.input :tag_list, placeholder: 'Seperate tags with ,' ,
                      input_html: { class: 'tagsSelection', multiple: "multiple" },
                      collection: @tags

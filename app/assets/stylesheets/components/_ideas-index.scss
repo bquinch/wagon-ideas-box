@@ -5,7 +5,8 @@
 }
 
 .idea-list__grid {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 340px);
+  grid-gap: 1rem;
   justify-content: space-between;
-  flex-wrap: wrap;
 }
