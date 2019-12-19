@@ -21,12 +21,12 @@
     <%= link_to 'update profile', edit_user_registration_path, class: 'btn-ideas-secondary' %>
   </div>
 
-  <div class="profile-ideas-list-container col-9">
+  <div class="idea-list__grid col-9">
     <% if !@user.ideas.empty? %>
       <h3>You have <%= pluralize(@user.ideas.length, 'idea') %></h3>
       <% @user.ideas.each do |idea| %>
         <% @idea = idea %>
-        <%= render 'shared/idea-card' %>
+        <%= render 'shared/idea-card__preview' %>
       <% end %>
     <% else %>
       <h3>You have <%= pluralize(@user.ideas.length, 'idea') %></h3>

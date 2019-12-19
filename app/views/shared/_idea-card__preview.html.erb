@@ -1,35 +1,36 @@
-
 <div class="index-idea-card mt-5">
-  <div class="index-idea-card__top">
-    <% if @idea.photos.attached? %>
-      <%= cl_image_tag @idea.photos.first.key, class: 'index-idea-card__top__photo' %>
-    <% else %>
-      <%= image_tag 'https://www.outokummunseutu.fi/components/com_easyblog/themes/wireframe/images/placeholder-image.png', alt: 'no-image-attached-to-idea' %>
-    <% end %>
-  </div>
-  <%= cl_image_tag @idea.user.photo.key, class: 'index-idea-card__user-image' %>
-  <div class="index-idea-card__bottom p-3">
-    <div class="index-idea-card__bottom__infos">
-      <h2 class="index-idea-card__bottom__title"><%= @idea.title.truncate(30) %></h2>
-      <p class="index-idea-card__bottom__description"><%= @idea.description.truncate(130) %></p>
+  <%= link_to idea_path(@idea), class: 'foutsmoilapaix' do %>
+    <div class="index-idea-card__top">
+      <% if @idea.photos.attached? %>
+        <%= cl_image_tag @idea.photos.first.key, class: 'index-idea-card__top__photo' %>
+      <% else %>
+        <%= image_tag 'https://www.outokummunseutu.fi/components/com_easyblog/themes/wireframe/images/placeholder-image.png', alt: 'no-image-attached-to-idea' %>
+      <% end %>
     </div>
-    <div class="index-idea-card__tags-votes d-flex justify-content-between align-items-center">
-      <div class="tag-list d-flex">
-        <% @idea.tags.first(3).each do |tag| %>
-          <div class="tag">
-            <%= tag.name %>
-          </div>
-        <% end %>
+    <%= cl_image_tag @idea.user.photo.key, class: 'index-idea-card__user-image' %>
+    <div class="index-idea-card__bottom p-3">
+      <div class="index-idea-card__bottom__infos">
+        <h2 class="index-idea-card__bottom__title"><%= @idea.title.truncate(30) %></h2>
+        <p class="index-idea-card__bottom__description"><%= @idea.description.truncate(130) %></p>
       </div>
-      <div class="index-idea-card__bottom__votes">
-        <% if Upvote.where(idea_id: @idea.id, user: current_user).length > 0 %>
-          <div class="index-idea-card__voted">
-        <% else %>
-          <div class="index-idea-card__unvoted">
-        <% end %>
-          <%= pluralize(@idea.upvotes.length, 'votes') %>
+      <div class="index-idea-card__tags-votes d-flex justify-content-between align-items-center">
+        <div class="tag-list d-flex">
+          <% @idea.tags.first(3).each do |tag| %>
+            <div class="tag">
+              <%= tag.name %>
+            </div>
+          <% end %>
+        </div>
+        <div class="index-idea-card__bottom__votes">
+          <% if Upvote.where(idea_id: @idea.id, user: current_user).length > 0 %>
+            <div class="index-idea-card__voted">
+          <% else %>
+            <div class="index-idea-card__unvoted">
+          <% end %>
+            <%= pluralize(@idea.upvotes.length, 'votes') %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>
