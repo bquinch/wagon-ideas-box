@@ -61,13 +61,57 @@
         <% end %>
       </div>
     </div>
-    <% if @idea.user == current_user %>
-      <%= link_to "Delete this idea", idea_path(@idea), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn-ideas-secondary' %>
-    <% elsif Participant.where(idea_id: @idea.id, user: current_user).length < 1 %>
-      <%= link_to "Participate", "#", class:"btn btn-success mb-3" %>
+    <!-- CURRENT USER VIEW -->
+    <% if @idea.user == current_user && @idea.team_completed == false %>
+      <%= link_to "Team Completed?", "#", data: { confirm: 'Are you sure to CLOSE this idea?' }, class: 'btn btn-primary' %>
+      <%= link_to "Delete this idea", idea_path(@idea), data: { confirm: 'Are you sure to DELETE this idea?' }, method: :delete, class: 'btn-ideas-secondary' %>
+
+    <% elsif @idea.user == current_user && @idea.team_completed %>
+      <p>The idea is now closed, no more request for participants. Good Luck!</p>
+
+    <!-- OTHER USER VIEW -->
+    <% elsif @participant.nil? && @idea.team_completed == false %>
+      <%= link_to "Request to Participate", idea_participants_path(@idea), method: :post, class:"btn btn-success mb-3" %>
+
+    <% elsif @participant && @idea.team_completed == false %>
+      <p>You requested for participating</p>
+      <%= link_to "Remove my request", idea_participant_path(@idea, @participant), method: :delete, data: { confirm: 'Are you sure to DELETE this request?' }, class: 'btn-ideas-secondaryy' %>
+    <!-- OTHER USER VIEW AND IDEA IS CLOSED -->
+    <% elsif @idea.team_completed %>
+
+      <% if @participant.nil? %>
+        <p>The team for this idea has been completed.</p>
+
+      <% else %>
+        <% if @participant.participating %>
+          <p>The team for this idea has been completed and you are on board!</p>
+        <% else %>
+          <p>The team for this idea has been completed.</p>
+        <% end %>
+
+      <% end %>
     <% end %>
 
+    <div class="card-participations-show mt-5">
+      <% if @all_interested_participants.length > 0 %>
+        <% @all_interested_participants.each do |participant| %>
+            <div class="card-participation">
+              <% if participant.user.photo.attached? %>
+                <%= cl_image_tag participant.user.photo.key, class: 'avatar' %>
+              <% else %>
+                <%= image_tag 'https://www.outokummunseutu.fi/components/com_easyblog/themes/wireframe/images/placeholder-image.png', alt: 'no-image-attached-to-user', class: 'avatar-large' %>
+              <% end %>
+              <p><%= participant.user.first_name.capitalize %> <%= participant.user.last_name.capitalize %> is interested to participate</p>
+            </div>
+        <% end %>
+      <% else %>
+        <p>No participation request yet</p>
+      <% end %>
+
+    </div>
   </div>
+
+
   <div class="chatroom hidden" id="chat-container">
 
       <div class="messages" id="messages-list">
@@ -99,11 +143,5 @@
         <%= f.submit 'Comment now !', class: 'btn-ideas-primary' %>
       <% end %>
     </div>
-    </div>
-
-
+  </div>
 </div>
-
-
-
-
