@@ -10,7 +10,7 @@
     <%= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
-    <% if !current_page?(root_url) %>
+    <% unless current_page?(root_url) || current_page?(main_app.new_user_session_path) || current_page?(main_app.new_user_registration_path) %>
       <%= render 'shared/navbar' %>
     <% end %>
     <%= render 'shared/flashes' %>
