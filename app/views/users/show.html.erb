@@ -17,12 +17,12 @@
       <span class="pl-2 profile-card__list__text"><%= @user.github_name %></span>
     <% end %>
   </div>
-  <%= link_to 'update profile', edit_user_registration_path, class: 'btn-ideas-secondary' %>
+  <%= link_to 'Update profile', edit_user_registration_path, class: 'pl-1 btn-ideas-secondary' %>
 </div>
 
 <div class="profile-ideas-list-container p-3">
   <% if !@user.ideas.empty? %>
-    <h3 >You have submitted <%= pluralize(@user.ideas.length, 'idea') %></h3>
+    <h3 ><%= @user == current_user ? "You have" : "#{@user.first_name.capitalize} has" %> submitted <%= pluralize(@user.ideas.length, 'idea') %></h3>
     <div class="idea-list__grid profile-idea-list">
       <% @user.ideas.each do |idea| %>
         <% @idea = idea %>
@@ -30,21 +30,36 @@
       <% end %>
     </div>
   <% else %>
-    <h3>You have submitted any ideas yet</h3>
+    <h3><%= @user == current_user ? "You have" : "#{@user.first_name.capitalize} has" %> not submitted any ideas yet</h3>
   <% end %>
 </div>
 
-<div class="profile-ideas-list-container p-3 mt-4">
-  <% if !@user.favorites.empty? %>
-    <h3 >You have added <%= pluralize(@user.favorites.length, 'idea') %> as favorite</h3>
-    <div class="idea-list__grid profile-idea-list">
-      <% @user.favorites.each do |favorite| %>
-        <% @idea = favorite.idea %>
-        <%= render 'shared/idea-card__preview' %>
-      <% end %>
-    </div>
-  <% else %>
-    <h3>You do not have any favorite ideas yet</h3>
-  <% end %>
-</div>
+<% if @user == current_user %>
+  <div class="profile-ideas-list-container p-3 mt-4">
+    <% if !@user.favorites.empty? %>
+      <h3 >You have added <%= pluralize(@user.favorites.length, 'idea') %> as favorite</h3>
+      <div class="idea-list__grid profile-idea-list">
+        <% @user.favorites.each do |favorite| %>
+          <% @idea = favorite.idea %>
+          <%= render 'shared/idea-card__preview' %>
+        <% end %>
+      </div>
+    <% else %>
+      <h3>You do not have any favorite ideas yet</h3>
+    <% end %>
+  </div>
 
+  <div class="profile-ideas-list-container p-3 my-4">
+    <% if !@user.participants.empty? %>
+      <h3 >You have requested to participate to <%= pluralize(@user.participants.length, 'idea') %></h3>
+      <div class="idea-list__grid profile-idea-list">
+        <% @user.participants.each do |participant| %>
+          <% @idea = participant.idea %>
+          <%= render 'shared/idea-card__preview' %>
+        <% end %>
+      </div>
+    <% else %>
+      <h3>You do not have requested to participate to any ideas yet</h3>
+    <% end %>
+  </div>
+<% end %>
