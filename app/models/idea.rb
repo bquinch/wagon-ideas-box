@@ -6,5 +6,6 @@ class Idea < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :upvotes, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :participants, dependent: :destroy
   acts_as_taggable
 end
