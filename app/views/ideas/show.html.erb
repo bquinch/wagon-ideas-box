@@ -56,7 +56,10 @@
     </div>
     <% if @idea.user == current_user %>
       <%= link_to "Delete this idea", idea_path(@idea), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn-ideas-secondary' %>
+    <% elsif Participant.where(idea_id: @idea.id, user: current_user).length < 1 %>
+      <%= link_to "Participate", "#", class:"btn btn-success mb-3" %>
     <% end %>
+
   </div>
   <div class="chatroom hidden" id="chat-container">
 
