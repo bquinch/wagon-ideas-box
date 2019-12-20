@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_20_104253) do
+
+ActiveRecord::Schema.define(version: 2019_12_20_132622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +45,15 @@ ActiveRecord::Schema.define(version: 2019_12_20_104253) do
     t.datetime "updated_at", null: false
     t.index ["idea_id"], name: "index_comments_on_idea_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "idea_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["idea_id"], name: "index_favorites_on_idea_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "ideas", force: :cascade do |t|
@@ -127,6 +137,8 @@ ActiveRecord::Schema.define(version: 2019_12_20_104253) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "ideas"
   add_foreign_key "comments", "users"
+  add_foreign_key "favorites", "ideas"
+  add_foreign_key "favorites", "users"
   add_foreign_key "ideas", "users"
   add_foreign_key "participants", "ideas"
   add_foreign_key "participants", "users"
