@@ -22,7 +22,7 @@
 
 <div class="profile-ideas-list-container p-3">
   <% if !@user.ideas.empty? %>
-    <h3 >You have <%= pluralize(@user.ideas.length, 'idea') %></h3>
+    <h3 >You have submitted <%= pluralize(@user.ideas.length, 'idea') %></h3>
     <div class="idea-list__grid profile-idea-list">
       <% @user.ideas.each do |idea| %>
         <% @idea = idea %>
@@ -30,7 +30,21 @@
       <% end %>
     </div>
   <% else %>
-    <h3>You have <%= pluralize(@user.ideas.length, 'idea') %></h3>
+    <h3>You have submitted any ideas yet</h3>
+  <% end %>
+</div>
+
+<div class="profile-ideas-list-container p-3 mt-4">
+  <% if !@user.favorites.empty? %>
+    <h3 >You have added <%= pluralize(@user.favorites.length, 'idea') %> as favorite</h3>
+    <div class="idea-list__grid profile-idea-list">
+      <% @user.favorites.each do |favorite| %>
+        <% @idea = favorite.idea %>
+        <%= render 'shared/idea-card__preview' %>
+      <% end %>
+    </div>
+  <% else %>
+    <h3>You do not have any favorite ideas yet</h3>
   <% end %>
 </div>
 
