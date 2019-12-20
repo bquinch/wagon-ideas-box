@@ -27,15 +27,13 @@
     <div class="attachments">
       <% if Upvote.where(idea_id: @idea.id, user: current_user).length > 0 %>
         <div class="upvotes-done">
-            <i class="fas fa-heart">
-            </i>
-              <%= @idea.upvotes.count %><%= pluralize(@idea.upvotes.count, 'Like') %>
+          <i class="fas fa-heart"></i>
+          <%= pluralize(@idea.upvotes.count, 'Like') %>
         </div>
       <% else %>
         <div class="upvotes">
-            <i class="fas fa-heart">
-            </i>
-              <%= @idea.upvotes.count %><%= pluralize(@idea.upvotes.count, 'Like') %>
+          <i class="fas fa-heart"></i>
+          <%= pluralize(@idea.upvotes.count, 'Like') %>
         </div>
       <% end %>
       <!-- TODO : implement back for ppl who wants to participate -->
