@@ -22,11 +22,15 @@
   width: 100%;
   height: 150px;
   object-fit: cover;
-  border-radius: 10px 10px 0px 0px;
+  border-radius: 8px 8px 0px 0px;
 }
 
+.index-idea-card__bottom {
+  padding: 16px 16px 5px 16px;
+}
 .index-idea-card__bottom__infos {
   position: relative;
+  height: 85px;
 }
 
 .index-idea-card__bottom__title {
@@ -40,29 +44,26 @@
   border-radius: 10px 0px 10px 0px;
 }
 
-.index-idea-card__voted,
-.index-idea-card__unvoted {
-  position: absolute;
-  font-weight: bolder;
-  color: #EEEEEE;
-  bottom: 0px;
-  right: 0px;
-  padding: 5px 10px;
-  border-radius: 10px 0px 10px 0px;
-}
-
-.index-idea-card__voted {
-  background: #617be3;
-}
-
-.index-idea-card__unvoted {
-  background: #FFFFFF;
-  border-top: 1px solid #617be3;
-  border-left: 1px solid #617be3;
-  color: #617be3;
-}
-
 .index-idea-card__bottom__description {
   color: #666666;
   font-size: 0.9rem;
+}
+
+//  attachments likes and who wants to work
+.attachments{
+  font-size: 13px;
+  color: #a9a9a9;
+  display: flex;
+  justify-content: space-around;
+  margin: 16px 20px 5px 20px;
+  padding-top: 5px;
+  border-top: solid 1px #a9a9a9;
+
+}
+
+.upvotes-done .fa-heart{
+  color: red;
+}
+.participate-done .fa-handshake{
+  color: darkblue;
 }
