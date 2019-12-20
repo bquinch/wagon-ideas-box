@@ -1,6 +1,6 @@
 class IdeasController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
-  before_action :set_idea, only: %i[show edit destroy]
+  before_action :set_idea, only: %i[show edit update destroy]
   def index
     @ideas = Idea.order(created_at: :desc)
   end
@@ -15,6 +15,14 @@ class IdeasController < ApplicationController
   end
 
   def edit
+    @user = current_user
+  end
+
+  def update
+    @user = current_user
+    @favorite = Favorite.new(user_id: @user.id, idea_id: @idea.id)
+    @idea.save
+    @favorite.save
   end
 
   def create
