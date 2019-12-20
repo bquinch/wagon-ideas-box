@@ -33,7 +33,11 @@
           <% else %>
             <li class="nav-item active">
           <% end %>
-          <li class="nav-item">
+          <% if current_page?(user_path(current_user)) %>
+            <li class="nav-item active">
+          <% else %>
+            <li class="nav-item">
+          <% end %>
             <%= link_to "My profile", user_path(current_user), class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
