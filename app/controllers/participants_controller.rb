@@ -1,6 +1,5 @@
 class ParticipantsController < ApplicationController
   def index
-    @participants = Participant.where(idea_id: params[:idea_id])
   end
 
   def show
@@ -10,6 +9,10 @@ class ParticipantsController < ApplicationController
   end
 
   def create
+    @participant = Participant.new(idea_id: params[:idea_id])
+    @participant.user = current_user
+    @participant.save
+    redirect_to idea_path(params[:idea_id])
   end
 
   def edit
@@ -19,5 +22,7 @@ class ParticipantsController < ApplicationController
   end
 
   def destroy
+    @participant = Participant.find_by(idea_id: params[:idea_id], user: current_user).destroy
+    redirect_to idea_path(params[:idea_id])
   end
 end

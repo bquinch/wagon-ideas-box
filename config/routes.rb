@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :users, only: :show
+
   resources :ideas do
     resources :comments, only: %i[new create]
     resources :upvotes, only: %i[create]

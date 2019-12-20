@@ -7,6 +7,8 @@ class IdeasController < ApplicationController
 
   def show
     @comment = Comment.new
+    @participant = Participant.find_by(idea: @idea, user: current_user)
+    @all_interested_participants = Participant.where(idea_id: @idea)
   end
 
   def new
