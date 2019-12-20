@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_one_attached :photo
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :participants, dependent: :destroy
 end
