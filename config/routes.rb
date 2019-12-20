@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :comments, only: %i[new create]
     resources :upvotes, only: %i[create]
     resources :favorites, only: %i[create destroy]
+    resources :participants
   end
 
   resources :comments, only: %i[destroy]

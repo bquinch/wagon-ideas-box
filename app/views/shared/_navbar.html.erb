@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container">
-    <%= link_to root_url, class: "navbar-brand" do %>
+    <%= link_to ideas_path, class: "navbar-brand" do %>
       <i class="far fa-lightbulb">
         <span>The Idea Box</span>
       </i>
@@ -28,12 +28,11 @@
           <% end %>
             <%= link_to "Ideas", ideas_path, class: "nav-link" %>
           </li>
-          <% if !current_page?(user_path(current_user)) %>
-            <li class="nav-item">
-          <% else %>
+          <% if current_page?(user_path(current_user)) %>
             <li class="nav-item active">
+          <% else %>
+            <li class="nav-item">
           <% end %>
-          <li class="nav-item">
             <%= link_to "My profile", user_path(current_user), class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">

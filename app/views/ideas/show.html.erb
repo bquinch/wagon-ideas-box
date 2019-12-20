@@ -34,7 +34,7 @@
         <h2><%= @idea.title %> <em>by <%= @idea.user.first_name.capitalize %> <%= @idea.user.last_name.capitalize %></em></h2>
         <div class="votes-in-show" id="votes-in-show">
           <p><%= pluralize(@idea.upvotes.length, 'vote') %></p>
-          <% if user_signed_in? %>
+          <% if user_signed_in? && current_user != @idea.user %>
             <% if Upvote.where(idea_id: @idea.id, user: current_user).length > 0 %>
               <p><em>(You upvoted this idea)</em></p>
             <% else %>
@@ -62,8 +62,11 @@
       </div>
     </div>
     <% if @idea.user == current_user %>
-      <%= link_to "Delete", idea_path(@idea), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn-ideas-secondary' %>
+      <%= link_to "Delete this idea", idea_path(@idea), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn-ideas-secondary' %>
+    <% elsif Participant.where(idea_id: @idea.id, user: current_user).length < 1 %>
+      <%= link_to "Participate", "#", class:"btn btn-success mb-3" %>
     <% end %>
+
   </div>
   <div class="chatroom hidden" id="chat-container">
 
