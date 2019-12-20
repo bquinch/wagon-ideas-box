@@ -1,0 +1,7 @@
+<ul>
+  <% @participants.each do |participant| %>
+    <li>
+      <%= participant.user.first_name.capitalize %> <%= participant.user.last_name.capitalize %>
+    </li>
+  <% end %>
+</ul>

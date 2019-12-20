@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :ideas do
     resources :comments, only: %i[new create]
     resources :upvotes, only: %i[create]
+    resources :participants
   end
 
   resources :comments, only: %i[destroy]
