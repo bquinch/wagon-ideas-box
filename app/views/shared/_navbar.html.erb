@@ -28,11 +28,6 @@
           <% end %>
             <%= link_to "Ideas", ideas_path, class: "nav-link" %>
           </li>
-          <% unless request.path != "/users/#{current_user.id}" %>
-            <li class="nav-item">
-          <% else %>
-            <li class="nav-item active">
-          <% end %>
           <% if current_page?(user_path(current_user)) %>
             <li class="nav-item active">
           <% else %>
