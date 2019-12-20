@@ -1,9 +1,19 @@
 .new-idea-form-container {
   border: 1px solid #550a4670;
+  border-radius: 10px;
 }
 
 .new-idea-container-container__title {
   font-size: 1.2rem;
   font-weight: bolder;
   color: #550a46;
+}
+
+.new-idea-container {
+  margin: 0px auto;
+
+  label {
+    font-size: 0.9rem;
+    color: #555555;
+  }
 }
