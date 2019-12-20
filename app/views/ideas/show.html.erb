@@ -99,7 +99,7 @@
               <% if participant.user.photo.attached? %>
                 <%= cl_image_tag participant.user.photo.key, class: 'avatar' %>
               <% else %>
-                <%= image_tag 'https://www.outokummunseutu.fi/components/com_easyblog/themes/wireframe/images/placeholder-image.png', alt: 'no-image-attached-to-user', class: 'avatar-large' %>
+                <%= image_tag 'profile.png', alt: 'no-image-attached-to-user', class: 'avatar' %>
               <% end %>
               <p><%= participant.user.first_name.capitalize %> <%= participant.user.last_name.capitalize %> is interested to participate</p>
             </div>
