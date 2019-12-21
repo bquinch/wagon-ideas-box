@@ -1,10 +1,11 @@
 <p><%= pluralize(idea.upvotes.length, 'vote') %></p>
 <% if user_signed_in? %>
   <% if Upvote.where(idea_id: idea.id, user: current_user).length > 0 %>
-    <p>You upvoted this idea</p>
-  <% else %>
+  <p><em>(You upvoted this idea)</em></p>  <% else %>
     <%= link_to idea_upvotes_path(idea), method: :post, remote: true do  %>
       <i class="fas fa-arrow-circle-up upvote-arrow"></i>
     <% end %>
   <% end %>
+  <%= render "shared/add-to-fav" %>
 <% end %>
+
