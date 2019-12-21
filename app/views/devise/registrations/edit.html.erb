@@ -1,52 +1,69 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="idea-box-background-update" style="background-image: url(<%= image_path "bg_idea_box.svg" %>)">
+  <div class="ideas-sign-up-form col-md-4 col-sm-12 bg-white p-3 text-center">
+    <h2 class="form-title pb-3">Edit your profile</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :first_name,
-                required: true,
-                autofocus: true %>
-    <%= f.input :last_name,
-                required: true,
-                autofocus: true %>
-    <%= f.input :github_name,
-                autofocus: true %>
-    <%= f.input :field,
-                required: true,
-                autofocus: true %>
-    <%= f.input :email, required: true, autofocus: true %>
+      <div class="form-inputs text-justify">
+        <div class="form-row">
+          <div class="col-md-6 col-sm-12">
+            <%= f.input :first_name,
+                        required: true,
+                        autofocus: true %>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <%= f.input :last_name,
+                        required: true,
+                        autofocus: true %>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-6 col-sm-12">
+            <%= f.input :github_name,
+                        autofocus: true %>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <%= f.input :field,
+                        required: true,
+                        autofocus: true %>
+          </div>
+        </div>
+        <%= f.input :email, required: true, autofocus: true %>
 
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+        <% end %>
+        <div class="form-row">
+          <div class="col-md-6 col-sm-12">
+            <%= f.input :password,
+                        hint: "leave it blank if you don't want to change it",
+                        required: false,
+                        input_html: { autocomplete: "new-password" } %>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <%= f.input :password_confirmation,
+                        required: false,
+                        input_html: { autocomplete: "new-password" } %>
+          </div>
+        </div>
+        <%= f.input :current_password,
+                    hint: "we need your current password to confirm your changes",
+                    required: true,
+                    input_html: { autocomplete: "current-password" } %>
+        <div class="text-center">
+          <%= f.input :photo, as: :file,
+                      input_html: { autocomplete: "your desired picture", class: 'd-none' }, label_html: { class: 'btn-ideas-primary'}, label: '📷 Edit Profile Pic'  %>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Update", class:"btn-ideas-primary" %>
+      </div>
     <% end %>
 
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :photo, as: :file,
-                input_html: { autocomplete: "your desired picture", class: 'd-none' }, label_html: { class: 'btn-ideas-primary'}, label: '📷 Edit Profile Pic'  %>
+    <p class='unhappy-text'>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, class: 'form-bottom-message', method: :delete %></p>
+    <em><%= link_to "Back", :back, class: 'form-bottom-message' %></em>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Update", class:"btn-ideas-primary" %>
-  </div>
-<% end %>
-
-<div class="py-5">
-  <h3>Cancel my account</h3>
-
-  <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-</div>
-<div class="pb-5">
-  <%= link_to "Back", :back %>
 </div>

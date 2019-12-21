@@ -11,6 +11,8 @@
   .navbar-brand {
     color: #EEEEEE;
     transition: color 0.3s;
+    padding-top: 0px;
+    padding-bottom: 0px;
 
     &:hover {
       color: #FFFFFF;
@@ -23,17 +25,18 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  width: 110px;
 }
 
 .nav-link {
   color: #DDDDDD !important;
-  transition: all 0.1s;
-  padding: 1rem 0rem;
+  transition: all 0.3s ease;
+  padding: 1rem;
+  border-bottom: 4px solid #550a46;
 
   &:hover {
     color: #FFFFFF !important;
-    border-bottom: 2px solid #DDDDDD;
+    border-bottom: 4px solid #DDDDDD;
   }
 }
 
@@ -45,6 +48,10 @@
 .nav-item.active {
   .nav-link {
     color: #FFFFFF !important;
-    border-bottom: 2px solid #DDDDDD;
+    border-bottom: 4px solid #DDDDDD;
   }
+}
+
+.navbar {
+  padding: 0px 1rem;
 }
