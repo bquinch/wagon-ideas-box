@@ -1,0 +1,7 @@
+ <div class="fav-idea">
+   <% if @idea.favorites.empty? %>
+     <%= link_to "Add to favorites", idea_path(@idea), method: :put %>
+   <% else %>
+     <%= link_to "Remove from favorites", idea_favorite_path(@idea), method: :delete %>
+   <% end %>
+ </div>

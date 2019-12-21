@@ -119,8 +119,8 @@ def new_users
 
 
   louis = User.new(
-    first_name: 'louis',
-    last_name: 'lescure',
+    first_name: 'Louis',
+    last_name: 'Lescure',
     github_name: 'Lescure-Louis',
     field: FIELDS.sample,
     password: password,
