@@ -157,6 +157,10 @@ def create_idea(user)
   idea = Idea.new(
     title: Faker::Marketing.buzzwords,
     description: Faker::Lorem.paragraph(sentence_count: 6),
+    pain: Faker::Lorem.paragraph(sentence_count: 3),
+    target: Faker::Lorem.paragraph(sentence_count: 3),
+    solution: Faker::Lorem.paragraph(sentence_count: 3),
+    originality: Faker::Lorem.paragraph(sentence_count: 3),
     figma_link: 'https://www.figma.com/file/Ghnt5fxEZ2Glf3S3WSz6Lj/Prototyping-in-Figma?node-id=0%3A1',
     github_link: 'https://github.com/basilequinchon/wagon-ideas-box',
     db_link: 'https://kitt.lewagon.com/db/3600'
