@@ -10,11 +10,18 @@
     <%= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
-    <% unless current_page?(root_url) || current_page?(main_app.new_user_session_path) || current_page?(main_app.new_user_registration_path) %>
+    <% unless current_page?(root_url) ||
+      current_page?(main_app.new_user_session_path) ||
+      current_page?(main_app.new_user_registration_path) ||
+      current_page?(edit_user_registration_path) %>
       <%= render 'shared/navbar' %>
     <% end %>
     <%= render 'shared/flashes' %>
-    <% unless current_page?(root_url) || current_page?(main_app.new_user_session_path) || current_page?(main_app.new_user_registration_path) || current_page?(new_idea_path)%>
+    <% unless current_page?(root_url) ||
+      current_page?(main_app.new_user_session_path) ||
+      current_page?(main_app.new_user_registration_path) ||
+      current_page?(new_idea_path) ||
+      current_page?(edit_user_registration_path) %>
       <div class="container">
         <%= yield %>
       </div>
