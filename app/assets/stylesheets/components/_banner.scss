@@ -16,3 +16,17 @@
   font-weight: normal;
   color: #550a4680;
 }
+
+.idea-box-background {
+  height: 100vh;
+  padding: 8% 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.new-idea-box-background {
+  height: calc(100vh - 73px);
+  padding: 4% 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
