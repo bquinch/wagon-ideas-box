@@ -116,6 +116,18 @@ def new_users
   )
 
   array << adelaide
+
+
+  # louis = User.new(
+  #   first_name: 'louis',
+  #   last_name: 'lescure',
+  #   github_name: 'Lescure-Louis',
+  #   field: FIELDS.sample,
+  #   password: password,
+  #   email: 'louis@idea.box'
+  # )
+
+  # array << louis
   return array
 end
 
