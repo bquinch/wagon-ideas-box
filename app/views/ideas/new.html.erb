@@ -6,8 +6,13 @@
       <div class="form-inputs text-justify">
         <%= f.input :title, placeholder: 'A billion dollars idea !', input_html: { maxlength: 45 } %>
         <%= f.input :description, placeholder: 'I want to make people very rich !!!', input_html: { maxlength: 500 } %>
-        <%= f.input :tag_list, placeholder: 'Seperate tags with ,' ,
+        <%= f.input :pain, placeholder: 'People are poor...', input_html: { maxlength: 250 } %>
+        <%= f.input :target, placeholder: 'Poor people', input_html: { maxlength: 250 } %>
+        <%= f.input :solution, placeholder: 'Give them money !', input_html: { maxlength: 250 } %>
+        <%= f.input :originality, placeholder: "Super original idea", input_html: { maxlength: 250 } %>
+        <%= f.input :tag_list,
                      input_html: { class: 'tagsSelection', multiple: "multiple" },
+                     label: 'Give tags to your idea (education, sport, finance...)',
                      collection: @tags
                      %>
       </div>
