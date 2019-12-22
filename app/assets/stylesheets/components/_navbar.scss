@@ -1,6 +1,6 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: #550a46;
+  background: #617be3;
   align-items: center;
 
   .navbar-brand span {
@@ -32,11 +32,11 @@
   color: #DDDDDD !important;
   transition: all 0.3s ease;
   padding: 1rem;
-  border-bottom: 4px solid #550a46;
+  border-bottom: 4px solid #617be3;
 
   &:hover {
     color: #FFFFFF !important;
-    border-bottom: 4px solid #DDDDDD;
+    border-bottom: 4px solid #ff896b;
   }
 }
 
@@ -48,7 +48,7 @@
 .nav-item.active {
   .nav-link {
     color: #FFFFFF !important;
-    border-bottom: 4px solid #DDDDDD;
+    border-bottom: 4px solid #ff896b;
   }
 }
 
