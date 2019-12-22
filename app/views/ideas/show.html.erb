@@ -43,7 +43,9 @@
               <% end %>
             <% end %>
           <% end %>
-       <%= render "shared/add-to-fav" %>
+          <div class="fav-idea">
+            <%= render "shared/add-to-fav", favorite: @idea.favorites.find_by(user: current_user) %>
+          </div>
         </div>
       </div>
       <p><%= @idea.description %></p>
