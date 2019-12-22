@@ -43,7 +43,7 @@
               <% end %>
             <% end %>
           <% end %>
-          <div class="fav-idea">
+          <div class="fav-idea" data-fav="<%= @idea.id %>">
             <%= render "shared/add-to-fav", favorite: @idea.favorites.find_by(user: current_user) %>
           </div>
         </div>

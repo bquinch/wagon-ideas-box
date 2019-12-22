@@ -42,6 +42,9 @@
           <span>7 Intéressé(e)s</span>
         </i>
       </div>
+      <div class="fav-idea" data-fav="<%= @idea.id %>">
+        <%= render "shared/add-to-fav", favorite: @idea.favorites.find_by(user: current_user) %>
+      </div>
     </div>
   </div>
   <% end %>

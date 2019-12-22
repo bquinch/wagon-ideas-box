@@ -1,0 +1,8 @@
+function refreshBookmark(innerHTML) {
+
+  const newBookmark = document.querySelector("[data-fav='<%= @idea.id %>']");
+  newBookmark.innerHTML = innerHTML;
+
+};
+
+refreshBookmark('<%= j render "shared/add-to-fav", favorite: @idea.favorites.find_by(user: current_user) %>');
