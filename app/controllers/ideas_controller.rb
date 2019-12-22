@@ -20,13 +20,6 @@ class IdeasController < ApplicationController
     @user = current_user
   end
 
-  def update
-    @user = current_user
-    @favorite = Favorite.new(user_id: @user.id, idea_id: @idea.id)
-    @idea.save
-    @favorite.save
-  end
-
   def create
     @idea = Idea.new(idea_params)
     @user = current_user
