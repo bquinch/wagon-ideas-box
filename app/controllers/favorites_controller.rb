@@ -8,8 +8,8 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    @favorites = Favorite.where(user_id: current_user.id, idea_id: params[:idea_id])
-    @favorites.destroy_all
-    redirect_to idea_path(params[:idea_id]), notice: "Removed from favorites"
+    @favorite = Favorite.find(params[:id])
+    @favorite.destroy
+    redirect_to idea_path(@favorite.idea_id), notice: "Removed from favorites"
   end
 end

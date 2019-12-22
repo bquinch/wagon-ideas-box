@@ -1,6 +1,6 @@
 <% if favorite.nil? %>
  <%= link_to "Add to favorites", idea_favorites_path(@idea), method: :post %>
 <% else %>
- <%= link_to "Remove from favorites", favorite_path(favorite.id), method: :delete %>
+ <%= link_to "Remove from favorites", favorite_path(favorite), method: :delete %>
 <% end %>
 
