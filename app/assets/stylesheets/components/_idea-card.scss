@@ -4,8 +4,8 @@
   position: relative;
   height: fit-content;
   border-radius: 10px;
-  box-shadow: 0px 4px 16px (0,0,0,0.2);
-  border: 1px solid #666666;
+  box-shadow: 0px 4px 16px rgba(0,0,0,0.1);
+  border: 1px solid #55555560;
 }
 
 .index-idea-card__user-image {
@@ -38,7 +38,7 @@
   font-weight: bolder;
   color: #EEEEEE;
   padding: 5px 10px;
-  background: #550a46;
+  background: #617be3;
   position: absolute;
   top: -40px;
   border-radius: 10px 0px 10px 0px;
@@ -62,8 +62,8 @@
 }
 
 .upvotes-done .fa-heart{
-  color: red;
+  color: #ff896b;
 }
 .participate-done .fa-handshake{
-  color: darkblue;
+  color:#617be3;
 }
