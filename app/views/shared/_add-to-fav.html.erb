@@ -1,6 +1,6 @@
 <% if favorite.nil? %>
-  <%= link_to "<i class='far fa-bookmark fa-lg'></i>".html_safe, idea_favorites_path(@idea), method: :post %>
+  <%= link_to "<i class='far fa-bookmark fa-lg'></i>".html_safe, idea_favorites_path(@idea), method: :post, remote: true %>
 <% else %>
-  <%= link_to "<i class='fas fa-bookmark fa-lg'></i>".html_safe, favorite_path(favorite), method: :delete %>
+  <%= link_to "<i class='fas fa-bookmark fa-lg'></i>".html_safe, favorite_path(favorite), method: :delete, remote: true %>
 <% end %>
 
