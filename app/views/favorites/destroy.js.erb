@@ -1,4 +1,4 @@
-function addBookmark(innerHTML) {
+function deleteBookmark(innerHTML) {
 
   const newBookmark = document.querySelector("[data-fav='<%= @idea.id %>']");
   console.log(newBookmark);
@@ -7,4 +7,4 @@ function addBookmark(innerHTML) {
 
 };
 
-addBookmark('<%= j render "shared/add-to-fav", favorite: @idea.favorites.find_by(user: current_user) %>');
+deleteBookmark('<%= j render "shared/add-to-fav", favorite: @idea.favorites.find_by(user: current_user) %>');

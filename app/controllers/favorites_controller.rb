@@ -5,12 +5,12 @@ class FavoritesController < ApplicationController
     @favorite.idea = Idea.find(params[:idea_id])
     if @favorite.save
       respond_to do |format|
-        format.html { redirect_to idea_path(params[:idea_id]) }
+        format.html { redirect_back fallback_location: root_path, notice: "Added to favorites" }
         format.js
       end
     else
       respond_to do |format|
-        format.html { render 'ideas/show' }
+        format.html { redirect_back fallback_location: root_path }
         format.js
       end
     end
@@ -18,7 +18,17 @@ class FavoritesController < ApplicationController
 
   def destroy
     @favorite = Favorite.find(params[:id])
-    @favorite.destroy
-    redirect_to idea_path(@favorite.idea_id), notice: "Removed from favorites"
+    @idea = @favorite.idea
+    if @favorite.destroy
+      respond_to do |format|
+        format.html { redirect_back fallback_location: root_path, notice: "Removed from favorites" }
+        format.js
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_back fallback_location: root_path }
+        format.js
+      end
+    end
   end
 end
