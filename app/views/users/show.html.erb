@@ -23,7 +23,7 @@
 <div class="profile-ideas-list-container p-3">
   <% if !@user.ideas.empty? %>
     <h3 ><%= @user == current_user ? "You have" : "#{@user.first_name.capitalize} has" %> submitted <%= pluralize(@user.ideas.length, 'idea') %></h3>
-    <div class="idea-list__grid profile-idea-list">
+    <div class="horizontal-scrolling-card profile-idea-list">
       <% @user.ideas.each do |idea| %>
         <% @idea = idea %>
         <%= render 'shared/idea-card__preview' %>
@@ -38,7 +38,7 @@
   <div class="profile-ideas-list-container p-3 mt-4">
     <% if !@user.favorites.empty? %>
       <h3 >You have added <%= pluralize(@user.favorites.length, 'idea') %> as favorite</h3>
-      <div class="idea-list__grid profile-idea-list">
+      <div class="horizontal-scrolling-card profile-idea-list">
         <% @user.favorites.each do |favorite| %>
           <% @idea = favorite.idea %>
           <%= render 'shared/idea-card__preview' %>
@@ -52,7 +52,7 @@
   <div class="profile-ideas-list-container p-3 my-4">
     <% if !@user.participants.empty? %>
       <h3 >You have requested to participate to <%= pluralize(@user.participants.length, 'idea') %></h3>
-      <div class="idea-list__grid profile-idea-list">
+      <div class="horizontal-scrolling-card profile-idea-list">
         <% @user.participants.each do |participant| %>
           <% @idea = participant.idea %>
           <%= render 'shared/idea-card__preview' %>
