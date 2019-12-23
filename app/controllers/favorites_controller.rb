@@ -3,6 +3,7 @@ class FavoritesController < ApplicationController
     @favorite = Favorite.new()
     @favorite.user = current_user
     @favorite.idea = Idea.find(params[:idea_id])
+    @idea = Idea.find(params[:idea_id])
     if @favorite.save
       respond_to do |format|
         format.html { redirect_back fallback_location: root_path, notice: "Added to favorites" }
@@ -10,7 +11,7 @@ class FavoritesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_back fallback_location: root_path }
+        format.html { render 'ideas/show' }
         format.js
       end
     end
@@ -26,7 +27,7 @@ class FavoritesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_back fallback_location: root_path }
+        format.html { render 'ideas/show' }
         format.js
       end
     end
