@@ -16,7 +16,9 @@
       current_page?(edit_user_registration_path) %>
       <%= render 'shared/navbar' %>
     <% end %>
-    <%= render 'shared/flashes' %>
+    <div id="flash-messages">
+      <%= render 'shared/flashes' %>
+    </div>
     <% unless current_page?(root_url) ||
       current_page?(main_app.new_user_session_path) ||
       current_page?(main_app.new_user_registration_path) ||

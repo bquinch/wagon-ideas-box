@@ -5,3 +5,4 @@ function deleteBookmark(innerHTML) {
 };
 
 deleteBookmark('<%= j render "shared/add-to-fav", favorite: @idea.favorites.find_by(user: current_user) %>');
+<%= render 'flashes' %>
