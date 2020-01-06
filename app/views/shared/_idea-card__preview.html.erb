@@ -4,7 +4,7 @@
     <% if @idea.photos.attached? %>
       <%= cl_image_tag @idea.photos.first.key, class: 'index-idea-card__top__photo' %>
     <% else %>
-      <%= image_tag 'https://www.outokummunseutu.fi/components/com_easyblog/themes/wireframe/images/placeholder-image.png', class: 'index-idea-card__top__photo', alt: 'no-image-attached-to-idea' %>
+      <%= image_tag 'bg_idea_box.svg', class: 'index-idea-card__top__photo', alt: 'no-image-attached-to-idea' %>
     <% end %>
   </div>
   <%= cl_image_tag @idea.user.photo.key, class: 'index-idea-card__user-image' %>
