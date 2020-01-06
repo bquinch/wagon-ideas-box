@@ -7,7 +7,11 @@
       <%= image_tag 'bg_idea_box.svg', class: 'index-idea-card__top__photo', alt: 'no-image-attached-to-idea' %>
     <% end %>
   </div>
-  <%= cl_image_tag @idea.user.photo.key, class: 'index-idea-card__user-image' %>
+  <% if @idea.user.photo.attached? %>
+    <%= cl_image_tag @idea.user.photo.key, class: 'index-idea-card__user-image' %>
+  <% else %>
+    <%= image_tag 'profile.png', alt: "empty-user-pic", class: 'index-idea-card__user-image' %>
+  <% end %>
   <div class="index-idea-card__bottom">
     <div class="index-idea-card__bottom__infos">
       <h2 class="index-idea-card__bottom__title"><%= @idea.title.truncate(30) %></h2>
