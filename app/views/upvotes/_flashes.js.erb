@@ -1,0 +1,6 @@
+function flashMessage(innerHTML) {
+  const flashContainer = document.querySelector("#flash-messages");
+  flashContainer.innerHTML = innerHTML;
+};
+
+flashMessage('<%= j render "shared/flashes", notice: flash[:notice] %>');

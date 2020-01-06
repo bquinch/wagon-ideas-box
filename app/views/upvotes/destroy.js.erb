@@ -1,0 +1,7 @@
+function deleteUpvote(innerHTML) {
+  const destroyUpvote = document.querySelector("[data-upvote='<%= @idea.id %>']");
+  destroyUpvote.innerHTML = innerHTML;
+};
+
+deleteUpvote('<%= j render "shared/add-upvote", upvote: @idea.upvotes.find_by(user: current_user) %>');
+<%= render 'flashes' %>

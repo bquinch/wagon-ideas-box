@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :favorites, only: %i[destroy]
   resources :comments, only: %i[destroy]
+  resources :upvotes, only: %i[destroy]
   get 'components', to: 'pages#components'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

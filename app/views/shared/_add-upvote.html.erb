@@ -1,0 +1,16 @@
+<% if @idea.user == current_user %>
+  <div class="d-flex align-items-center">
+    <p><%= @idea.upvotes.length %></p><i class="fas fa-heart"></i>
+  </div>
+<% elsif upvote.nil? %>
+  <div class="d-flex align-items-center">
+    <p><%= @idea.upvotes.length %></p>
+    <%= link_to "<i class='far fa-heart'></i>".html_safe, idea_upvotes_path(@idea), method: :post, remote: true %>
+  </div>
+<% else %>
+  <div class="d-flex align-items-center">
+    <p><%= @idea.upvotes.length %></p>
+    <%= link_to "<i class='fas fa-heart'></i>".html_safe, upvote_path(upvote), method: :delete, remote: true %>
+  </div>
+<% end %>
+
