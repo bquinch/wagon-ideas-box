@@ -31,15 +31,44 @@ class IdeasController < ApplicationController
     end
   end
 
+  def update
+    if @idea.update(idea_params)
+      redirect_to idea_path(@idea), notice: "Figma link was added"
+    else
+      render :show, notice: "Couldn't add a proper link"
+    end
+  end
+
   def destroy
     @idea.destroy
     redirect_to ideas_path, notice: "Your idea has been deleted"
   end
 
+  def figma
+    @idea = Idea.find(params[:idea_id])
+    @user = current_user
+  end
+
+  def github
+    @idea = Idea.find(params[:idea_id])
+    @user = current_user
+  end
+
   private
 
   def idea_params
-    params.require('idea').permit(:title, :description, tag_list: [], photos: [])
+    params.require('idea').permit(
+      :title,
+      :description,
+      :figma_link,
+      :github_link,
+      :pain,
+      :target,
+      :solution,
+      :originality,
+      tag_list: [],
+      photos: []
+    )
   end
 
   def set_idea

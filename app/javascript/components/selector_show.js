@@ -15,12 +15,14 @@ const selectorShow = () => {
       teamContainer.classList.add('hidden');
     });
     chat.addEventListener('click', (event) => {
+      const notif = document.querySelectorAll('.comment')[document.querySelectorAll('.comment').length-1];
       idea.classList.remove('active');
       chat.classList.add('active');
       team.classList.remove('active');
       ideaContainer.classList.add('hidden');
       chatContainer.classList.remove('hidden');
       teamContainer.classList.add('hidden');
+      notif.scrollIntoView();
     });
     team.addEventListener('click', (event) => {
       idea.classList.remove('active');

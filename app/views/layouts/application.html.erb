@@ -23,7 +23,9 @@
       current_page?(main_app.new_user_session_path) ||
       current_page?(main_app.new_user_registration_path) ||
       current_page?(new_idea_path) ||
-      current_page?(edit_user_registration_path) %>
+      current_page?(edit_user_registration_path) ||
+      current_page?(idea_new_figma_path(@idea)) ||
+      current_page?(idea_new_github_path(@idea)) || %>
       <div class="container">
         <%= yield %>
       </div>

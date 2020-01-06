@@ -1,0 +1,12 @@
+<div class="new-idea-box-background" style="background-image: url(<%= image_path "bg_idea_box.svg" %>)">
+  <div class="new-idea-container my-3 col-md-6 col-sm-12">
+    <div class="new-idea-form-container bg-white p-3 text-center">
+    <h1 class='new-idea-container-container__title text-center'>Add a figma link</h1>
+      <%= simple_form_for @idea, html: { method: :put } do |f| %>
+      <div class="form-inputs text-justify">
+        <%= f.input :github_link, placeholder: 'Enter a valid github url' %>
+        <%= f.submit 'Update idea', class: 'btn-ideas-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
