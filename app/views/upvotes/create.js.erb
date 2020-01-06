@@ -1,10 +1,9 @@
-console.log("hey")
-function majVotes(votesHTML) {
-  const votes = document.getElementById('votes-in-show');
-  votes.innerHTML = votesHTML;
-}
+function addUpvote(votesHTML) {
+  const newUpvote = document.querySelector("[data-upvote='<%= @idea.id %>']");
+  newUpvote.innerHTML = votesHTML;
+};
 
-majVotes('<%= j render "upvotes/votes", idea: @idea %>');
-
+addUpvote('<%= j render "shared/add-upvote", upvote: @idea.upvotes.find_by(user: current_user) %>');
+<%= render 'flashes' %>
 
 

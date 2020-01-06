@@ -1,7 +1,6 @@
 function deleteBookmark(innerHTML) {
-
-  const newBookmark = document.querySelector("[data-fav='<%= @idea.id %>']");
-  newBookmark.innerHTML = innerHTML;
+  const destroyBookmark = document.querySelector("[data-fav='<%= @idea.id %>']");
+  destroyBookmark.innerHTML = innerHTML;
 };
 
 deleteBookmark('<%= j render "shared/add-to-fav", favorite: @idea.favorites.find_by(user: current_user) %>');
