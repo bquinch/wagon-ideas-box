@@ -1,25 +1,56 @@
-<%= link_to idea_path(@idea), class: "link-to-idea" do %>
-  <div class="card-and-upvote">
-    <div class="card-product">
-      <% if @idea.photos.attached? %>
-        <%= cl_image_tag @idea.photos.first.key %>
+<div class="index-idea-card m-2">
+  <%= link_to idea_path(@idea), class: 'foutsmoilapaix' do %>
+  <div class="index-idea-card__top">
+    <% if @idea.photos.attached? %>
+      <%= cl_image_tag @idea.photos.first.key, class: 'index-idea-card__top__photo' %>
+    <% else %>
+      <%= image_tag 'bg_idea_box.svg', class: 'index-idea-card__top__photo', alt: 'no-image-attached-to-idea' %>
+    <% end %>
+  </div>
+  <% if @idea.user.photo.attached? %>
+    <%= cl_image_tag @idea.user.photo.key, class: 'index-idea-card__user-image' %>
+  <% else %>
+    <%= image_tag 'profile.png', alt: "empty-user-pic", class: 'index-idea-card__user-image' %>
+  <% end %>
+  <div class="index-idea-card__bottom">
+    <div class="index-idea-card__bottom__infos">
+      <h2 class="index-idea-card__bottom__title"><%= @idea.title.truncate(30) %></h2>
+      <p class="index-idea-card__bottom__description"><%= @idea.description.truncate(130) %></p>
+    </div>
+
+    <div class="index-idea-card__tags-votes d-flex justify-content-between align-items-center">
+      <div class="tag-list d-flex">
+        <% @idea.tags.first(3).each do |tag| %>
+          <div class="tag">
+            <%= tag.name %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <!-- Travail des votes et personnes souhaitant travailler sur projet -->
+    <div class="attachments">
+      <% if Upvote.where(idea_id: @idea.id, user: current_user).length > 0 %>
+        <div class="upvotes-done">
+          <i class="fas fa-heart"></i>
+          <%= pluralize(@idea.upvotes.count, 'like') %>
+        </div>
       <% else %>
-        <%= image_tag 'https://www.outokummunseutu.fi/components/com_easyblog/themes/wireframe/images/placeholder-image.png', alt: 'no-image-attached-to-idea' %>
+        <div class="upvotes">
+          <i class="fas fa-heart"></i>
+          <%= pluralize(@idea.upvotes.count, 'like') %>
+        </div>
       <% end %>
-      <div class="card-product-infos-and-votes">
-        <div class="card-product-infos">
-          <h2><%= @idea.title %></h2>
-          <p><%= @idea.description.truncate(300) %></p>
-          <p><%= @idea.created_at.strftime("Published on %d/%m/%Y") %></p>
-          <p><em>by <%= @idea.user.first_name.capitalize %> <%= @idea.user.last_name.capitalize %></em></p>
-        </div>
-        <div class="votes">
-          <p><%= pluralize(@idea.upvotes.length, 'vote') %></p>
-          <% if Upvote.where(idea_id: @idea.id, user: current_user).length > 0 %>
-            <p><em>You upvoted this idea</em></p>
-          <% end %>
-        </div>
+      <!-- TODO : implement back for ppl who wants to participate /
+        J'ai ajouté seulement le pluralize pour l'instant (Basile)-->
+      <div class="participate">
+        <i class="fas fa-handshake">
+          <%= pluralize(@idea.participants.count, 'teammate') %>
+        </i>
+      </div>
+      <div class="fav-idea" data-fav="<%= @idea.id %>">
+        <%= render "shared/add-to-fav", favorite: @idea.favorites.find_by(user: current_user) %>
       </div>
     </div>
   </div>
-<% end %>
+  <% end %>
+</div>

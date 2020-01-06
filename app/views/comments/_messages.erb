@@ -1,9 +1,13 @@
-<% idea.comments.each do |comment| %>
-  <div class="notification">
+<% @idea.comments.each do |comment| %>
+  <% if comment.user == current_user %>
+    <div class="comment own-notification my-1">
+  <% else %>
+    <div class="comment notification my-1">
+  <% end %>
     <% if comment.user.photo.attached? %>
-      <%= cl_image_tag comment.user.photo.key, class: 'avatar-large' %>
+      <%= cl_image_tag comment.user.photo.key, class: 'avatar' %>
     <% else %>
-      <%= image_tag 'https://www.outokummunseutu.fi/components/com_easyblog/themes/wireframe/images/placeholder-image.png', alt: 'no-image-attached-to-user', class: 'avatar-large' %>
+      <%= image_tag 'profile.png', alt: 'no-image-attached-to-user', class: 'avatar' %>
     <% end %>
     <div class="notification-content">
       <p><strong><%= comment.user.first_name %> <%= comment.user.last_name %></strong></p>
@@ -11,7 +15,7 @@
     </div>
     <% if comment.user == current_user %>
       <div class="notification-actions">
-        <%= link_to comment_path(comment), data: { confirm: 'Are you sure?' }, method: :delete, remote: true do %>
+        <%= link_to comment_path(comment), data: { confirm: 'Are you sure you want to delete your comment ?' }, method: :delete do %>
           Delete <i class="far fa-trash-alt"></i>
         <% end %>
       </div>

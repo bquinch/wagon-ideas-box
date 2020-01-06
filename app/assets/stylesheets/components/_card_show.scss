@@ -1,51 +1,47 @@
 .container-idea-comments {
-  margin-top: 1em;
   height: 80vh;
   position: relative;
+
+  p {
+    margin-bottom: 0px;
+  }
 }
 
-.title-and-upvote {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.card-product-show__navbar {
+  background: #ff896b;
+  border-radius: 4px 4px 0px 0px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
 }
 
-.title-and-upvote p {
-  margin: 0 3em;
-}
-
-.votes-in-show {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.votes-in-show p {
-  margin: 1em;
+.card-product-show__title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #FFFFFF;
+  margin-bottom: 0px;
 }
 
 .card-product-show__left__images {
   width: 50vh;
+  border-radius: 10px;
 }
 
 .card-product-show {
   overflow: hidden;
   background: white;
-  border-radius: 4px;
-  box-shadow: 0 0 4px rgba(0,0,0,0.2);
+  border-radius: 0px 0px 10px 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
   margin-bottom: 1em;
 }
 
 .card-product-show .card-product-infos-show {
-  padding: 2em;
   width: 100%;
 }
 
 .card-participations-show {
   overflow: hidden;
   background: white;
-  border-radius: 4px;
-  box-shadow: 0 0 4px rgba(0,0,0,0.2);
+  border-radius: 0px 0px 10px 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -53,9 +49,31 @@
   width: 100%;
 
   p {
-    margin:0;
-    padding-left:10px;
+    margin-left: 1rem;
   }
+}
+
+.card-product-infos-show__paragraph {
+  color: #555555;
+}
+
+.upvote-idea,
+.team-members {
+  color: #555555;
+
+  .blue {
+    color: #617be3;
+  }
+}
+
+.idea__user__name {
+  color: #555555;
+  font-size: 1rem;
+  margin-bottom: 0px;
+}
+
+.my-upvote {
+  color: #ff896b;
 }
 
 .card-participations-show .card-participation {
@@ -72,13 +90,7 @@
 .chatroom {
   width: 100%;
   height: 80%;
-  margin-left: 1em;
   overflow: scroll;
-}
-
-.messages {
-  background-color: white;
-  width: 100%;
 }
 
 .comment-zone {
@@ -88,7 +100,24 @@
   height: 20%;
 }
 
-.image-caroussel {
-  object-fit: contain;
+.image-caroussel,
+.no-image-show {
+  object-fit: cover;
   height: 50vh;
+  width: 50vh;
+  object-position: center;
+  border-radius: 10px;
 }
+
+.carousel-inner {
+  border-radius: 10px;
+}
+
+.card-product-show__left__participate p {
+  color: #555555;
+}
+
+.card-product-infos-show__links i {
+  font-size: 1.3rem;
+}
+

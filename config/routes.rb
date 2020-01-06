@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :users, only: :show
 
   resources :ideas do
+    get 'new_figma', to: 'ideas#figma'
+    get 'new_github', to: 'ideas#github'
     resources :comments, only: %i[new create]
     resources :upvotes, only: %i[create]
     resources :favorites, only: %i[create]

@@ -1,17 +1,37 @@
-<div class="selectors">
-  <div id="idea-selector" class="selector active">Idea</div>
-  <div id="chat-selector" class="selector">Chat</div>
-  <div id="team-selector" class="selector">Team</div>
+<div class="card-product-show__navbar d-flex justify-content-between align-items-center mt-3 pl-3">
+  <h2 class="card-product-show__title"><%= @idea.title.split(' ').map(&:capitalize).join(' ') %></h2>
+  <div class="selectors">
+    <div id="idea-selector" class="selector active">Idea</div>
+    <div id="chat-selector" class="selector">Chat</div>
+    <div id="team-selector" class="selector">Team</div>
+  </div>
 </div>
 
 <div class="container-idea-comments">
-  <div class="card-product-show" id="idea-container">
-    <div class="card-product-show__header d-flex justify-content-between align-items-center">
-      <div class="title-and-upvote d-flex">
-        <h2><%= @idea.title %></h2>
+  <div class="card-product-show px-3 pb-3 pt-2" id="idea-container">
+    <div class="card-product-show__header d-flex justify-content-between align-items-center mb-2">
+      <div class="d-flex">
+        <div class="idea__user d-flex align-items-center mr-3">
+          <% if @idea.user.photo.attached? %>
+            <%= cl_image_tag @idea.user.photo.key, class: 'avatar mr-2' %>
+          <% else %>
+            <%= image_tag 'profile.png', alt: "empty-user-pic", class: 'avatar mr-2' %>
+          <% end %>
+          <h5 class="idea__user__name">Idea created by <strong><%= "#{@idea.user.first_name} #{@idea.user.last_name}" %></strong></h5>
+        </div>
         <!-- VOTES -->
-        <div class="upvote-idea" data-upvote="<%= @idea.id %>">
+        <div class="upvote-idea d-flex align-items-center px-3 border-left border-right" data-upvote="<%= @idea.id %>">
           <%= render "shared/add-upvote", upvote: @idea.upvotes.find_by(user: current_user) %>
+        </div>
+        <div class="team-members d-flex align-items-center px-3">
+          <% if @idea.participants.length > 0 %>
+            <p class="mr-2"><%= @idea.participants.length %></p>
+            <% if @participant.interested %>
+              <i class="fas fa-handshake blue"></i>
+            <% else %>
+              <i class="fas fa-handshake"></i>
+            <% end %>
+          <% end %>
         </div>
       </div>
       <!-- BOOKMARKS -->
@@ -21,7 +41,7 @@
     </div>
     <div class="card-product-show__body d-flex">
       <div class="card-product-show__left">
-        <div class="card-product-show__left__images">
+        <div class="card-product-show__left__images mr-3">
           <% if @idea.photos.attached? %>
             <div id="carouselIdeaControls" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner">
@@ -44,10 +64,10 @@
               </a>
             </div>
           <% else %>
-              <%= image_tag 'bg_idea_box.svg', alt: 'no-image-attached-to-idea' %>
+            <%= image_tag 'bg_idea_box.svg', alt: 'no-image-attached-to-idea', class: "no-image-show mr-3" %>
           <% end %>
         </div>
-        <div class="tag-list d-flex">
+        <div class="tag-list d-flex my-3">
           <% @idea.tags.each do |tag| %>
             <div class="tag tag-number<%= rand(1..3) %>">
               <%= tag.name %>
@@ -56,7 +76,8 @@
         </div>
         <div class="card-product-show__left__participate">
           <% if @idea.user == current_user && @idea.team_completed == false %>
-            <%= link_to "Complete team", "#", data: { confirm: 'Are you sure you want to close the team ?' }, class: 'btn btn-ideas-primary' %>
+            <%= link_to "Complete team", "#", data: { confirm: 'Are you sure you want to close the team ?' }, class: 'btn btn-ideas-primary mb-3' %>
+            <br>
             <%= link_to "Delete idea", idea_path(@idea), data: { confirm: 'Are you sure to delete this idea?' }, method: :delete, class: 'btn-ideas-secondary' %>
 
           <% elsif @idea.user == current_user && @idea.team_completed %>
@@ -67,8 +88,10 @@
             <%= link_to "Team up", idea_participants_path(@idea), method: :post, class: "btn btn-ideas-primary mb-3" %>
 
           <% elsif @participant && @idea.team_completed == false %>
-            <p>You want to team up</p>
-            <%= link_to "Cancel my participation", idea_participant_path(@idea, @participant), method: :delete, data: { confirm: 'Are you sure you want to leave the team ?' }, class: 'btn-ideas-secondaryy' %>
+            <div class="d-flex justify-content-between">
+              <p>You asked to participate</p>
+              <%= link_to "Cancel my participation", idea_participant_path(@idea, @participant), method: :delete, data: { confirm: 'Are you sure you want to leave the team ?' }, class: 'btn-ideas-secondary' %>
+            </div>
           <!-- OTHER USER VIEW AND IDEA IS CLOSED -->
           <% elsif @idea.team_completed %>
 
@@ -85,25 +108,41 @@
         </div>
       </div>
       <div class="card-product-infos-show">
-        <div class="card-product-infos-show__paragraph">
-          <h3 class="card-product-infos-show__paragraph__title"><strong>Présentation de l'idée :</strong></h3>
+        <div class="card-product-infos-show__paragraph mb-3">
+          <p class="card-product-infos-show__paragraph__title"><strong>Présentation de l'idée :</strong></p>
           <p class="card-product-infos-show__paragraph__text"><%= @idea.description %></p>
         </div>
-        <div class="card-product-infos-show__paragraph">
-          <h3 class="card-product-infos-show__paragraph__title"><strong>Target :</strong></h3>
+        <div class="card-product-infos-show__paragraph mb-3">
+          <p class="card-product-infos-show__paragraph__title"><strong>Target :</strong></p>
           <p class="card-product-infos-show__paragraph__text"><%= @idea.target %></p>
         </div>
-        <div class="card-product-infos-show__paragraph">
-          <h3 class="card-product-infos-show__paragraph__title"><strong>Pain :</strong></h3>
+        <div class="card-product-infos-show__paragraph mb-3">
+          <p class="card-product-infos-show__paragraph__title"><strong>Pain :</strong></p>
           <p class="card-product-infos-show__paragraph__text"><%= @idea.pain %></p>
         </div>
-        <div class="card-product-infos-show__paragraph">
-          <h3 class="card-product-infos-show__paragraph__title"><strong>Solution :</strong></h3>
+        <div class="card-product-infos-show__paragraph mb-3">
+          <p class="card-product-infos-show__paragraph__title"><strong>Solution :</strong></p>
           <p class="card-product-infos-show__paragraph__text"><%= @idea.solution %></p>
         </div>
-        <div class="card-product-infos-show__paragraph">
-          <h3 class="card-product-infos-show__paragraph__title"><strong>Originality :</strong></h3>
+        <div class="card-product-infos-show__paragraph mb-3">
+          <p class="card-product-infos-show__paragraph__title"><strong>Originality :</strong></p>
           <p class="card-product-infos-show__paragraph__text"><%= @idea.originality %></p>
+        </div>
+        <div class="card-product-infos-show__links">
+          <% if @idea.figma_link.nil? && @idea.user == current_user %>
+            <%= link_to idea_new_figma_path(@idea) do %>
+              <i class="fab fa-figma pr-2"></i>
+            <% end %>
+          <% else %>
+            <a href="<%= @idea.figma_link %>" title="go to figma" target="_blank" class="pr-2"><i class="fab fa-figma"></i></a>
+          <% end %>
+          <% if @idea.github_link.nil? && @idea.user == current_user %>
+            <%= link_to idea_new_github_path(@idea) do %>
+              <i class="fab fa-github-alt"></i>
+            <% end %>
+          <% else %>
+            <a href="<%= @idea.github_link %>" title="go to github" target="_blank"><i class="fab fa-github-alt"></i></a>
+          <% end %>
         </div>
       </div>
     </div>
@@ -112,27 +151,8 @@
 
 
   <div class="chatroom hidden" id="chat-container">
-    <div class="messages" id="messages-list">
-      <% @idea.comments.each do |comment| %>
-        <div class="notification">
-          <% if comment.user.photo.attached? %>
-            <%= cl_image_tag comment.user.photo.key, class: 'avatar-large' %>
-          <% else %>
-            <%= image_tag 'profile.png', alt: 'no-image-attached-to-user', class: 'avatar-large' %>
-          <% end %>
-          <div class="notification-content">
-            <p><strong><%= comment.user.first_name %> <%= comment.user.last_name %></strong></p>
-            <p><%= comment.message %></p>
-          </div>
-          <% if comment.user == current_user %>
-            <div class="notification-actions">
-              <%= link_to comment_path(comment), data: { confirm: 'Are you sure you want to delete your comment ?' }, method: :delete do %>
-                Delete <i class="far fa-trash-alt"></i>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
+    <div class="messages mt-1" id="messages-list">
+      <%= render 'comments/messages' %>
     </div>
     <div class="comment-zone">
       <%= simple_form_for([@idea, @comment], remote: true) do |f| %>
@@ -142,7 +162,7 @@
     </div>
   </div>
   <div class="teamroom hidden" id="team-container">
-    <div class="card-participations-show mt-5">
+    <div class="card-participations-show">
       <% if @all_interested_participants.length > 0 %>
         <% @all_interested_participants.each do |participant| %>
             <div class="card-participation">
