@@ -33,9 +33,9 @@ class IdeasController < ApplicationController
 
   def update
     if @idea.update(idea_params)
-      redirect_to idea_path(@idea), notice: "Figma link was added"
+      redirect_to idea_path(@idea), notice: "Idea updated"
     else
-      render :show, notice: "Couldn't add a proper link"
+      render :show, notice: "Couldn't update"
     end
   end
 
