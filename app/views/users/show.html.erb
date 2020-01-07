@@ -20,46 +20,57 @@
   <%= link_to 'Update profile', edit_user_registration_path, class: 'pl-1 btn-ideas-secondary' %>
 </div>
 
-<div class="profile-ideas-list-container p-3">
-  <% if !@user.ideas.empty? %>
-    <h3 ><%= @user == current_user ? "You have" : "#{@user.first_name.capitalize} has" %> submitted <%= pluralize(@user.ideas.length, 'idea') %></h3>
-    <div class="horizontal-scrolling-card profile-idea-list">
-      <% @user.ideas.each do |idea| %>
-        <% @idea = idea %>
-        <%= render 'shared/idea-card' %>
+<div class="profil-containers">
+  <div class="profile__navbar d-flex align-items-center mt-3 pl-3">
+    <div class="selectors">
+      <div id="user-idea-selector" class="selector active">Your ideas</div>
+      <div id="user-fav-selector" class="selector">Your bookmarks</div>
+      <div id="user-participate-selector" class="selector">Your teams</div>
+    </div>
+  </div>
+
+  <div class="profile-ideas-list-container p-3" id='user-ideas'>
+    <% if !@user.ideas.empty? %>
+      <h3 ><%= @user == current_user ? "You have" : "#{@user.first_name.capitalize} has" %> submitted <%= pluralize(@user.ideas.length, 'idea') %></h3>
+      <div class="horizontal-scrolling-card profile-idea-list">
+        <% @user.ideas.each do |idea| %>
+          <% @idea = idea %>
+          <%= render 'shared/idea-card' %>
+        <% end %>
+      </div>
+    <% else %>
+      <h3><%= @user == current_user ? "You have" : "#{@user.first_name.capitalize} has" %> not submitted any ideas yet</h3>
+    <% end %>
+  </div>
+
+  <% if @user == current_user %>
+    <div class="profile-ideas-list-container hidden p-3" id='favorite-ideas'>
+      <% if !@user.favorites.empty? %>
+        <h3 >You bookmarked <%= pluralize(@user.favorites.length, 'idea') %></h3>
+        <div class="horizontal-scrolling-card profile-idea-list">
+          <% @user.favorites.each do |favorite| %>
+            <% @idea = favorite.idea %>
+            <%= render 'shared/idea-card' %>
+          <% end %>
+        </div>
+      <% else %>
+        <h3>You don't have any idea bookmarked yet</h3>
       <% end %>
     </div>
-  <% else %>
-    <h3><%= @user == current_user ? "You have" : "#{@user.first_name.capitalize} has" %> not submitted any ideas yet</h3>
+
+    <div class="profile-ideas-list-container hidden p-3" id='participant-ideas'>
+      <% if !@user.participants.empty? %>
+        <h3 >You have requested to participate to <%= pluralize(@user.participants.length, 'idea') %></h3>
+        <div class="horizontal-scrolling-card profile-idea-list">
+          <% @user.participants.each do |participant| %>
+            <% @idea = participant.idea %>
+            <%= render 'shared/idea-card' %>
+          <% end %>
+        </div>
+      <% else %>
+        <h3>You didn't request to participate to any idea yet</h3>
+      <% end %>
+    </div>
   <% end %>
+
 </div>
-
-<% if @user == current_user %>
-  <div class="profile-ideas-list-container p-3 mt-4">
-    <% if !@user.favorites.empty? %>
-      <h3 >You have added <%= pluralize(@user.favorites.length, 'idea') %> as favorite</h3>
-      <div class="horizontal-scrolling-card profile-idea-list">
-        <% @user.favorites.each do |favorite| %>
-          <% @idea = favorite.idea %>
-          <%= render 'shared/idea-card' %>
-        <% end %>
-      </div>
-    <% else %>
-      <h3>You do not have any favorite ideas yet</h3>
-    <% end %>
-  </div>
-
-  <div class="profile-ideas-list-container p-3 my-4">
-    <% if !@user.participants.empty? %>
-      <h3 >You have requested to participate to <%= pluralize(@user.participants.length, 'idea') %></h3>
-      <div class="horizontal-scrolling-card profile-idea-list">
-        <% @user.participants.each do |participant| %>
-          <% @idea = participant.idea %>
-          <%= render 'shared/idea-card' %>
-        <% end %>
-      </div>
-    <% else %>
-      <h3>You do not have requested to participate to any ideas yet</h3>
-    <% end %>
-  </div>
-<% end %>

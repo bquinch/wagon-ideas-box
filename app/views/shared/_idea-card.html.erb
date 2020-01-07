@@ -1,56 +1,56 @@
 <div class="index-idea-card m-2">
-  <%= link_to idea_path(@idea), class: 'foutsmoilapaix' do %>
-  <div class="index-idea-card__top">
-    <% if @idea.photos.attached? %>
-      <%= cl_image_tag @idea.photos.first.key, class: 'index-idea-card__top__photo' %>
-    <% else %>
-      <%= image_tag 'bg_idea_box.svg', class: 'index-idea-card__top__photo', alt: 'no-image-attached-to-idea' %>
-    <% end %>
-  </div>
-  <% if @idea.user.photo.attached? %>
-    <%= cl_image_tag @idea.user.photo.key, class: 'index-idea-card__user-image' %>
-  <% else %>
-    <%= image_tag 'profile.png', alt: "empty-user-pic", class: 'index-idea-card__user-image' %>
-  <% end %>
-  <div class="index-idea-card__bottom">
-    <div class="index-idea-card__bottom__infos">
-      <h2 class="index-idea-card__bottom__title"><%= @idea.title.truncate(30) %></h2>
-      <p class="index-idea-card__bottom__description"><%= @idea.description.truncate(130) %></p>
-    </div>
-
-    <div class="index-idea-card__tags-votes d-flex justify-content-between align-items-center">
-      <div class="tag-list d-flex">
-        <% @idea.tags.first(3).each do |tag| %>
-          <div class="tag">
-            <%= tag.name %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-    <!-- Travail des votes et personnes souhaitant travailler sur projet -->
-    <div class="attachments">
-      <% if Upvote.where(idea_id: @idea.id, user: current_user).length > 0 %>
-        <div class="upvotes-done">
-          <i class="fas fa-heart"></i>
-          <%= pluralize(@idea.upvotes.count, 'like') %>
-        </div>
+  <%= link_to idea_path(@idea), class: 'card-link' do %>
+    <div class="index-idea-card__top">
+      <% if @idea.photos.attached? %>
+        <%= cl_image_tag @idea.photos.first.key, class: 'index-idea-card__top__photo' %>
       <% else %>
-        <div class="upvotes">
+        <%= image_tag 'bg_idea_box.svg', class: 'index-idea-card__top__photo', alt: 'no-image-attached-to-idea' %>
+      <% end %>
+    </div>
+    <% if @idea.user.photo.attached? %>
+      <%= cl_image_tag @idea.user.photo.key, class: 'index-idea-card__user-image' %>
+    <% else %>
+      <%= image_tag 'profile.png', alt: "empty-user-pic", class: 'index-idea-card__user-image' %>
+    <% end %>
+    <div class="index-idea-card__bottom">
+      <div class="index-idea-card__bottom__infos">
+        <h2 class="index-idea-card__bottom__title"><%= @idea.title.truncate(30) %></h2>
+        <p class="index-idea-card__bottom__description"><%= @idea.description.truncate(130) %></p>
+      </div>
+
+      <div class="index-idea-card__tags-votes d-flex justify-content-between align-items-center">
+        <div class="tag-list d-flex">
+          <% @idea.tags.first(3).each do |tag| %>
+            <div class="tag">
+              <%= tag.name %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <!-- Travail des votes et personnes souhaitant travailler sur projet -->
+  <% end %>
+      <div class="attachments">
+        <% if Upvote.where(idea_id: @idea.id, user: current_user).length > 0 %>
+          <div class="upvotes-done">
+        <% else %>
+          <div class="upvotes">
+        <% end %>
           <i class="fas fa-heart"></i>
           <%= pluralize(@idea.upvotes.count, 'like') %>
         </div>
-      <% end %>
-      <!-- TODO : implement back for ppl who wants to participate /
-        J'ai ajouté seulement le pluralize pour l'instant (Basile)-->
-      <div class="participate">
-        <i class="fas fa-handshake">
+        <!-- TODO : implement back for ppl who wants to participate /
+          J'ai ajouté seulement le pluralize pour l'instant (Basile)-->
+        <% if Participant.where(idea_id: @idea.id, user: current_user).length > 0 %>
+          <div class="participate-done">
+        <% else %>
+          <div class="participate">
+        <% end %>
+          <i class="fas fa-handshake"></i>
           <%= pluralize(@idea.participants.count, 'teammate') %>
-        </i>
-      </div>
-      <div class="fav-idea" data-fav="<%= @idea.id %>">
-        <%= render "shared/add-to-fav", favorite: @idea.favorites.find_by(user: current_user) %>
+        </div>
+        <div class="fav-idea" data-fav="<%= @idea.id %>">
+          <%= render "shared/add-to-fav", favorite: @idea.favorites.find_by(user: current_user) %>
+        </div>
       </div>
     </div>
-  </div>
-  <% end %>
 </div>
