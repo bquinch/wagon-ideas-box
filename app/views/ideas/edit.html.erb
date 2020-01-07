@@ -2,7 +2,7 @@
   <div class="new-idea-container my-3 col-md-6 col-sm-12">
     <div class="new-idea-form-container bg-white p-3 text-center">
     <h1 class='new-idea-container-container__title text-center'>Edit idea</h1>
-      <%= simple_form_for @idea do |f| %>
+      <%= simple_form_for @idea, html: { method: :put }  do |f| %>
       <div class="form-inputs text-justify">
         <%= f.input :title, placeholder: 'A billion dollars idea !', input_html: { maxlength: 45 } %>
         <%= f.input :description, placeholder: 'I want to make people very rich !!!', input_html: { maxlength: 500 } %>
@@ -16,7 +16,7 @@
                     input_html: { multiple: true, autocomplete: "your desired picture", class: 'd-none' },
                     label_html: { class: 'btn-ideas-primary'},
                     label: '📷 Add some pics' %>
-        <%= f.submit 'Submit your idea !', class: 'btn-ideas-primary' %>
+        <%= f.submit 'Update Idea', class: 'btn-ideas-primary' %>
       <% end %>
     </div>
   </div>
