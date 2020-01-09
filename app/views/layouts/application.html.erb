@@ -23,15 +23,11 @@
     <div id="flash-messages">
       <%= render 'shared/flashes' %>
     </div>
-    <% unless current_page?(root_url) ||
-      current_page?(main_app.new_user_session_path) ||
-      current_page?(main_app.new_user_registration_path) ||
-      current_page?(new_idea_path) ||
-      current_page?(edit_user_registration_path) ||
-      current_page?(idea_new_figma_path(@idea)) ||
-      current_page?(idea_new_github_path(@idea)) || %>
-      <div class="container">
-        <%= yield %>
+    <% unless current_page?(root_url) %>
+      <div class="idea-box-background" style="background-image: url(<%= image_path "bg_idea_box.svg" %>)">
+        <div class="container">
+          <%= yield %>
+        </div>
       </div>
     <% else %>
       <%= yield %>
