@@ -26,7 +26,7 @@
         <div class="team-members d-flex align-items-center px-3">
           <% if @idea.participants.length > 0 %>
             <p class="mr-2"><%= @idea.participants.length %></p>
-            <% if @participant.interested %>
+            <% unless @participant.nil? %>
               <i class="fas fa-handshake blue"></i>
             <% else %>
               <i class="fas fa-handshake"></i>
