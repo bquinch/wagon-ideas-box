@@ -1,0 +1,15 @@
+basile:
+  first_name: 'Basile'
+  last_name: 'Quinchon'
+  github_name: 'basilequinchon'
+  field: "Back-end"
+  encrypted_password: '123456'
+  email: 'basile@idea.box'
+
+thibaud:
+  first_name: 'Thibaud'
+  last_name: 'Allain'
+  github_name: 'thibaudallain'
+  field: "Back-end"
+  encrypted_password: '123456'
+  email: 'thibaud@idea.box'

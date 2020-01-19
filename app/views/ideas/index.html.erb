@@ -1,8 +1,12 @@
 <div class="ideas-index-container my-3">
   <div class="idea-list__grid">
-    <% @ideas.each do |idea| %>
-      <% @idea = idea %>
-      <%= render 'shared/idea-card' %>
+    <% if @ideas.empty? %>
+      <p>No idea yet</p>
+    <% else %>
+      <% @ideas.each do |idea| %>
+        <% @idea = idea %>
+        <%= render 'shared/idea-card' %>
+      <% end %>
     <% end %>
   </div>
 </div>
