@@ -18,7 +18,6 @@ gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
-gem 'cloudinary', '~> 1.12.0'
 gem 'mini_magick', '>= 4.9.5'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'cloudinary', '~> 1.12.0'
